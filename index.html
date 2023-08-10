@@ -63,6 +63,29 @@
     text-align: center;
     padding: 10px 0;
   }
+  .projects-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 20px;
+  }
+
+  .project-box {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  .project-title {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+
+  .project-description {
+    font-size: 16px;
+    color: #666;
+  }
 </style>
 </head>
 <body>
@@ -92,7 +115,21 @@
 
   <section id="projects">
     <h1>Projects</h1>
-    <p>Showcase some of your notable projects with descriptions.</p>
+    <div class="projects-container">
+      <div class="project-box">
+        <h2 class="project-title">Project 1</h2>
+        <p class="project-description">Description of Project 1.</p>
+      </div>
+      <div class="project-box">
+        <h2 class="project-title">Project 2</h2>
+        <p class="project-description">Description of Project 2.</p>
+      </div>
+      <div class="project-box">
+        <h2 class="project-title">Project 3</h2>
+        <p class="project-description">Description of Project 3.</p>
+      </div>
+      <!-- Add more project boxes as needed -->
+    </div>
   </section>
 
   <footer>

@@ -3,12 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Your Single-Page Website</title>
+<title>Michael Gamota</title>
+<link rel="icon" href="media/download.png" type="image/jpeg">
 <style>
+
+
   body {
     font-family: Arial, sans-serif;
     margin: 0;
-    padding: 0;
+    padding-left: 50px;
+    padding-right: 50px;
     background-color: #f4f4f4;
   }
 
@@ -28,6 +32,7 @@
   nav ul li {
     display: inline;
     margin-right: 20px;
+    text-align: left;
   }
 
   nav ul li a {
@@ -41,7 +46,6 @@
   }
 
   section {
-    padding: 100px 0;
     text-align: center;
   }
 
@@ -51,10 +55,62 @@
     margin-bottom: 20px;
   }
 
+  #about {
+    background-color: #f7f7f7;
+    padding: 50px;
+    display: flex;
+    align-items: center;
+  }
+
+  #about .about-image {
+    width: 250px;
+    height: 400px; 
+    margin-right: 30px;
+    overflow: hidden;
+  }
+
+  #about .about-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Maintain aspect ratio and cover the container */
+    display: block; /* Prevent any gaps beneath the image */
+  }
+
+  #about .about-content {
+    flex: 1;
+  }
+
+  #about h1 {
+    font-size: 36px;
+    color: #333;
+    margin-bottom: 20px;
+  }
+
+  #about p {
+    font-size: 18px;
+    color: #666;
+    line-height: 1.6;
+  }
+
   section p {
     font-size: 18px;
     color: #666;
     line-height: 1.6;
+    
+  }
+
+  section a {
+    font-size: 18px;
+    color: #666;
+    line-height: 1.6;
+    text-align: center;
+    padding-left: 50px;
+    padding-right: 50px;
+  }
+
+  .experience-text {
+    text-align: justify;
+    margin-left: 20px; /* Adjust the space after the bullet point */
   }
 
   footer {
@@ -65,7 +121,7 @@
   }
   .projects-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
     gap: 20px;
     padding: 20px;
   }
@@ -121,85 +177,353 @@
   </nav>
 
   <section id="home">
-    <h1>Home</h1>
-    <p></p>
+    <img src="media/uiuc.jpg" alt="Cover Image" width="1200" height="300">
   </section>
 
   <section id="about">
-    <h1>About Me</h1>
-    <p>Welcome! My name is Michael Gamota and I am a junior at the University of Illinois at Urbana-Champaign majoring 
-      in Electrical Engineering with minors in Computer Science and Business Administration. 
+    <div class="about-image">
+      <img src="media/me.png" alt="Me">
+    </div>
+    <div class="about-content">
+      <h1>About Me</h1>
+      <a>Welcome! My name is Michael Gamota and I am a junior at the University of Illinois at Urbana-Champaign majoring 
+        
+      in Electrical Engineering with minors in Computer Science and Business Administration.
       <br>
-      
+      <br>
       I have spent two summers interning at a research and development institute called NextFlex which has a mission of 
-      advancing flexible hybrid electronics(FHE) enabled products for industries including: healthcare, aerospace, defense, 
+      advancing flexible hybrid electronics (FHE) enabled products for industries including: healthcare, aerospace, defense, 
       consumer electronics, automotive, transportation, and infrastructure.
       <br>
-      
+      <br>
       I am balancing my academics with <em>practicum</em>, solving real world problems in collaborative environments, ranging from 
       student engineering organizations to undergraduate research to an industry innovation institute. This gives me a unique 
       perspective, allowing me to appreciate the R&D spectrum, from applied research to product development.
-
+      <br>
       <br>
       The purpose of this site is to document my experiences as a student, engineer, and developer of innovative solutions.
-    </p>
+      </a>
+    </div>
   </section>
+
 
   <section id="experience">
     <h1>Professional Experience</h1>
+
+    <img id="experience-image" src="media/nf.png" alt="Nextflex Logo" width="300" height="70">
+    
     <h2>FHE Fabrication Intern</h2>
-    <h3>,<em>NextFlex, May 2023-August 2023</em></h3>
-    <p></p>
+    <h3><em>NextFlex, May 2023-August 2023</em></h3>
+    
+    <ul class="experience-list">
+      <li class="experience-item">
+        <div class="experience-text">
+          Developed firmware to run gesture recognition ML on Zephyr RTOS and inference using a custom BLE service
+        </div>
+      </li>
+      <li class="experience-item">
+        <div class="experience-text">
+          Developed firmware on Zephyr RTOS to subscribe to characteristic notifications and generate PWM signal to control flaps on UAV
+        </div>
+      </li>
+      <li class="experience-item">
+        <div class="experience-text">
+          Designed, fabricated, and tested a flexible printed dual band antenna for WiFi daughter board for custom MCU
+        </div>
+      </li>
+      <li class="experience-item">
+        <div class="experience-text">
+          Designed an automated testbench for a custom MCU including C code for a comprehensive “self-test” on MCU as well as automation of Fanuc robot control and logging of recorded data using Python
+        </div>
+      </li>
+      <li class="experience-item">
+        <div class="experience-text">
+          Created a Python GUI for selective device testing to improve reliability test efficiency
+        </div>
+      </li>
+      <li class="experience-item">
+        <div class="experience-text">
+          Designed and fabricated a multi-zone capacitive touch sensor, interfaced with a custom MCU using C
+        </div>
+      </li>
+      <li class="experience-item">
+        <div class="experience-text">
+          Designed a flexible brushless motor ESC for a custom RC fixed wing, part of an interdisciplinary team
+        </div>
+      </li>
+      <li class="experience-item">
+        <div class="experience-text">
+          Wrote intuitive operations manual for 3D laser microscope and environmental chambers
+        </div>
+      </li>
+    </ul>
 
-
+    <br>
     <h2>Electrical Engineering Intern</h2>
-    <h3>,<em>NextFlex, May 2022-August 2022</em></h3>
-    <p></p>
+    <h3><em>NextFlex, May 2022-August 2022</em></h3>
+    <ul class="experience-list">
+      <li class="experience-item">
+        <div class="experience-text">
+          Designed and implemented a multi-channel multiplexor board which increased efficiency of the testing and programming of a proprietary MCU. Wrote a Python program to automatically connect to board and operate over BLE.
+        </div>
+      </li>
+      <li class="experience-item">
+        <div class="experience-text">
+          Designed, implemented, and tested a gesture-based control system for UAVs (quad and fixed wing) utilizing flexible sensors and a flexible hybrid microcontroller. Wrote code for MCU and host computer communicating over BLE.
+        </div>
+      </li>
+      <li class="experience-item">
+        <div class="experience-text">
+          Wrote Python control system code to interpret data and convert to MAVLINK protocol instructions.
+        </div>
+      </li>
+      <li class="experience-item">
+        <div class="experience-text">
+          Verified control systems using multiple Linux-based simulators and ran hardware tests and missions.
+        </div>
+      </li>
+      <li class="experience-item">
+        <div class="experience-text">
+          Built a system based on BLE, CircuitPython, and Python to control a mechanical hand and visualize real-time data from peripheral sensors on a host computer.
+        </div>
+      </li>
+      <li class="experience-item">
+        <div class="experience-text">
+          Designed and fabricated motor control electronics for a 3D printed rover and developed a control system which relies on BLE data transmission between microcontrollers.
+        </div>
+      </li>
+    </ul>
   </section>
 
+  <br>
   <section id="projects">
     <h1>Projects</h1>
+
     <div class="projects-container">
+
       <div class="project-box">
-        <h2 class="project-title">Vending Machine Logic</h2>
-        <h3 class="project-subheader">ECE 120 Lab, April 2021</h3>
-        <div class="project-media">
-          <img src="media/rover.jpg" alt="Rover Image" width="300" height="200">
-        </div>
-        <p class="project-description">      </p>
+        <h2 class="project-title">Water Leak Sensor with Email Alerts</h2>
+        <h3 class="project-subheader">Personal Project, July 2023</h3>
+          <img src="media/leak.jpg" alt="Leak Sensor Image" width="220" height="300">
+        <p class="project-description">
+          This project is a leak detector for a multitude of applications. I designed a PCB based sensor as well as an analog circuit 
+          which is leveraged by the ADC on a Raspberry Pi Pico W. The Pico W measures battery percentage and sends an email notification 
+          when the battery is running low. It also sends multiple email alerts when a leak is detected. Any number of sensor boards can
+          be wired in parallel which creates applications in various environments.
+        </p>
         <div class="skill-tags">
-          <span class="skill-tag">Sensors</span>
-          <span class="skill-tag">Autonomous</span>
-          <span class="skill-tag">Power Electronics</span>
-          <span class="skill-tag">Motor Control</span>
-          <span class="skill-tag">Analog Circuits</span>
-          <span class="skill-tag">Collaborative</span>
+          <span class="skill-tag">PCB Design</span>
+          <span class="skill-tag">Analog Circuit Design</span>
+          <span class="skill-tag">Smart Home</span>
+          <span class="skill-tag">Embedded Systems</span>
+          <span class="skill-tag">Wireless Communication</span>
+        </div>
+        <div class="project-links">
+          <a href="https://github.com/mgamota2/PicoW/tree/main/Water%20Sensor" target="_blank"><i class="fa fa-external-link"></i> Visit Project</a>
         </div>
       </div>
+
       <div class="project-box">
-        <h2 class="project-title">Vending Machine Logic</h2>
-        <h3 class="project-subheader">ECE 120 Lab, April 2021</h3>
+        <h2 class="project-title">WiFi Operated Model Train Control Hub</h2>
+        <h3 class="project-subheader">Personal Project, June 2023</h3>
+        
         <div class="project-media">
-          <img src="media/rover.jpg" alt="Rover Image" width="300" height="200">
+          <video width="150" height="300" controls>
+            <source src="media/train.mp4" type="video/mp4">
+          </video>
         </div>
-        <p class="project-description">      </p>
+        <p class="project-description">
+          Personally I think this is one of my coolest projects. I used a Raspberry Pi Pico W to create a control hub for a model
+          train that I have had since I was younger. The out of the box controls involved different switches for each switching track 
+          and a bulky controller with a dial for speed control. I wanted to create a wireless enabled embedded systems solution to make
+          the whole thing more efficient. My solution handles speed, direction, and track switching control all from a web server
+          hosted on the Pico W, meaning anybody on the LAN can control the train. All files and documentation are available on my GitHub
+          at the link below.
+        </p>
         <div class="skill-tags">
-          <span class="skill-tag">Sensors</span>
-          <span class="skill-tag">Autonomous</span>
+          <span class="skill-tag">PCB Design</span>
           <span class="skill-tag">Power Electronics</span>
-          <span class="skill-tag">Motor Control</span>
-          <span class="skill-tag">Analog Circuits</span>
-          <span class="skill-tag">Collaborative</span>
+          <span class="skill-tag">Consumer Electronics</span>
+          <span class="skill-tag">Embedded Systems</span>
+          <span class="skill-tag">Wireless Communication (WiFi)</span>
+        </div>
+        <div class="project-links">
+          <a href="https://github.com/mgamota2/PicoW/tree/main/TrainControl" target="_blank"><i class="fa fa-external-link"></i> Visit Project</a>
         </div>
       </div>
+
+      <div class="project-box">
+        <h2 class="project-title">Digital Stock Ticker Tape</h2>
+        <h3 class="project-subheader">Personal Project, June 2023</h3>
+        
+        <div class="project-media">
+          <video width="150" height="300" controls>
+            <source src="media/train.mp4" type="video/mp4">
+          </video>
+        </div>
+        
+        <p class="project-description">
+          One of my personal interests is the stock market, but the cost of a digital ticker tape display can be $1000+. 
+          Instead, I chose to make my own using a Raspberry Pi Pico W and a WS1218B LED strip (total cost ~$25). 
+          The Raspberry Pi Pico W hosts a web server which holds an interactive list of stocks to display. 
+          Real time stock data including price and percent change are displayed in a scrolling fashion.
+        </p>
+        <div class="skill-tags">
+          <span class="skill-tag">Consumer Electronics</span>
+          <span class="skill-tag">API</span>
+          <span class="skill-tag">Smart Home</span>
+          <span class="skill-tag">Embedded Systems</span>
+          <span class="skill-tag">Wireless Communication (WiFi)</span>
+        </div>
+        <div class="project-links">
+          <a href="https://github.com/mgamota2/PicoW/tree/main/Ticker%20Tape" target="_blank"><i class="fa fa-external-link"></i> Visit Project</a>
+        </div>
+      </div>
+
+      <div class="project-box">
+        <h2 class="project-title">USB-CAN Converter</h2>
+        <h3 class="project-subheader">Illinois EV Concept, May 2023</h3>
+        <div class="project-media">
+          <img src="media/usbcan.jpg" alt="USB-CAN Image" width="220" height="300">
+        </div>
+        <p class="project-description">
+          This project is designed to create bidirectional communication between a PC on board the vehicle and our sensors and driving 
+          systems to enable autonomous control. 
+          All of our sensors and systems use a CAN bus to communicate, my solution allows the CAN transmitted data to be fed into 
+          algorithms running on the PC. The PC then returns instructions to be sent to our motor controller, battery management system, 
+          steering system, and brakes.
+        </p>
+        <div class="skill-tags">
+          <span class="skill-tag">PCB Design</span>
+          <span class="skill-tag">Digital Communication</span>
+          <span class="skill-tag">Automotive</span>
+          <span class="skill-tag">Autonomous</span>
+          <span class="skill-tag">Embedded Systems</span>
+        </div>
+        
+      </div>
+
+      <div class="project-box">
+        <h2 class="project-title">Location Logging and Display on FPGA</h2>
+        <h3 class="project-subheader">ECE 385, April 2023</h3>
+        <div class="project-media">
+          <img src="media/385final.jpg" alt="GPS Image" width="300" height="200">
+        </div>
+        <p class="project-description">
+          This was my final project in my Digital Systems Lab and involved developing a UART RX, NMEA message parser, data storage format,
+           and an VGA graphics driver in SystemVerilog. The functionality of this design included timestamped location logging 
+           (20 yard resolution) as well as the ability to display the logged locations on a monitor. I implemented this on an Intel 
+           FPGA using Quartus tools in SystemVerilog. There is a detailed report at the link below.
+        </p>
+        
+        <div class="skill-tags">
+          <span class="skill-tag">Digital Communication</span>
+          <span class="skill-tag">Graphics</span>
+          <span class="skill-tag">GNSS</span>
+          <span class="skill-tag">FPGA</span>
+          <span class="skill-tag">SystemVerilog</span>
+        </div>
+        <div class="project-links">
+          <a href="https://github.com/mgamota2/ECE385/blob/main/Final%20Project/ECE%20385_%20Final%20Project%20Report.pdf" target="_blank"><i class="fa fa-external-link"></i> Visit Project</a>
+        </div>
+      </div>
+
+        <div class="project-box">
+          <h2 class="project-title">CPU on FPGA</h2>
+          <h3 class="project-subheader">ECE 385, February 2023</h3>
+          <div class="project-media">
+            <img src="media/lc3.jpg" alt="LC3 Image" width="230" height="300">
+          </div>
+          <p class="project-description">
+            This project was part of my Digital Systems Lab and built upon earlier courses where we studied a CPU architecture called
+            Little Computer 3 (LC-3). The ISA is similar to the simpler extensions of RISC-V like RV32I. To complete this project,
+            I implemented the ISA on an Intel FPGA using Quartus tools in SystemVerilog.
+          </p>
+          <div class="skill-tags">
+            <span class="skill-tag">Computer Architecture</span>
+            <span class="skill-tag">CPU Design</span>
+            <span class="skill-tag">Digital Systems</span>
+            <span class="skill-tag">FPGA</span>
+            <span class="skill-tag">SystemVerilog</span>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/mgamota2/ECE385/tree/main/Lab%205" target="_blank"><i class="fa fa-external-link"></i> Visit Project</a>
+          </div>
+        </div>
+
+
+        <div class="project-box">
+          <h2 class="project-title">GPS/Telemetry Module</h2>
+          <h3 class="project-subheader">Illinois EV Concept, November 2022</h3>
+          <div class="project-media">
+            <img src="media/gps.jpg" alt="GPS Image" width="300" height="230">
+          </div>
+          <p class="project-description">This project was designed for the Illinois EV Concept team which builds a concept EV from scratch
+            to race in the Shell Eco-Marathon, an international competition. This project involved designing, assembling, and testing a 
+            4 layer PCB which includes a GPS module, LoRa communications module, CAN transceiver, and USB-C, all built around an STM32 MCU. 
+            This project enables the team to track the vehicle in real time for health monitoring, driver communication, position tracking, 
+            and even remote control. Thank you to Dmitry Ilcheko for guidance.
+          </p>
+          <div class="skill-tags">
+            <span class="skill-tag">PCB Design</span>
+            <span class="skill-tag">RF Engineering</span>
+            <span class="skill-tag">Embedded Systems</span>
+            <span class="skill-tag">Automotive</span>
+            <span class="skill-tag">Collaborative</span>
+          </div>
+        </div>
+
+      <div class="project-box">
+        <h2 class="project-title">Slicing Tree for VLSI</h2>
+        <h3 class="project-subheader">ECE 220, November 2022</h3>
+        <div class="project-media">
+          <img src="media/vlsi.jpg" alt="VLSI Image" width="400" height="270">
+        </div>
+        <p class="project-description">I included this project over others in the course due to the 
+          application of the slicing tree algorithm which we used. We used the algorithm to create a floorplan for VLSI design
+          based on a text file input. This is one of many C and C++ projects done in my Computer Systems and Programming class which
+          covered basic data structures, algorithms, and C code compilation
+        </p>
+        <div class="skill-tags">
+          <span class="skill-tag">C</span>
+          <span class="skill-tag">VLSI</span>
+          <span class="skill-tag">Algorithms</span>
+          <span class="skill-tag">Optimization</span>
+        </div>
+      </div>
+      
+      <div class="project-box">
+        <h2 class="project-title">Motion System for RF Testing</h2>
+        <h3 class="project-subheader">Research Asst. (Dr. Schutt-Aine), September 2022</h3>
+        <div class="project-media">
+          <video width="150" height="300" controls>
+            <source src="media/rf.mp4" type="video/mp4">
+          </video>
+        </div>
+        <p class="project-description">The goal of this project was to design a motion system to automate RF signal integrity testing.
+          My role on the project was to design the entire system and build support for 2 dimensions of movement. I got familiar with Ansys HSFF,
+          Marlin open source 3D printer firmware, used Python to interact over serial with an Arduino, and design and 3D print custom parts.
+          Thank you to Dr. Thong Nguyen and Dr. Jose Schutt-Aine for this experience.
+        </p>
+        <div class="skill-tags">
+          <span class="skill-tag">3D Printing</span>
+          <span class="skill-tag">Robotics</span>
+          <span class="skill-tag">Embedded Systems</span>
+          <span class="skill-tag">RF Engineering</span>
+          <span class="skill-tag">Research</span>
+        </div>
+      </div>
+
       <div class="project-box">
         <h2 class="project-title">Vending Machine Logic</h2>
-        <h3 class="project-subheader">ECE 220 Lab, April 2021</h3>
+        <h3 class="project-subheader">ECE 120 Lab, April 2022</h3>
         <div class="project-media">
-          <img src="media/rover.jpg" alt="Rover Image" width="300" height="200">
+          <video width="150" height="300" controls>
+            <source src="media/120.mp4" type="video/mp4">
+          </video>
         </div>
         <p class="project-description">This was the final project for the Introduction to Computing course. This project involved creating 
-          a finite state machine to handle vending machine transactions based on coin size. 
+          a finite state machine from discrete logic ICs to handle vending machine transactions based on buttons representing different coins. 
         </p>
         <div class="skill-tags">
           <span class="skill-tag">Digital Logic</span>
@@ -207,45 +531,28 @@
           <span class="skill-tag">Computing</span>
         </div>
       </div>
-      <div class="project-box">
-        <h2 class="project-title">Motion System for RF Testing</h2>
-        <h3 class="project-subheader">Undergrad Research (Jose Schutt-Aine), March 2021</h3>
-        <div class="project-media">
-          <img src="" alt="Video" width="300" height="200">
-        </div>
-        <p class="project-description">The goal of this project was to create a motion system to automate RF signal integrity testing.
-          My role on the project was to design the entire system and build support for 2 dimensions of movement. I got familiar with Ansys HSFF,
-          Marlin open source 3D printer firmware, used Python to interact over serial with an Arduino, and design and 3D print custom parts.
-          Thank you to Dr. Thong Nguyen and Dr. Jose Schutt-Aine for this experience.
-        </p>
-        <div class="skill-tags">
-          <span class="skill-tag">3D Printing</span>
-          <span class="skill-tag">Python</span>
-          <span class="skill-tag">RF Engineering</span>
-          <span class="skill-tag">Serial</span>
-          <span class="skill-tag">Research</span>
-        </div>
-      </div>
+
       <div class="project-box">
         <h2 class="project-title">Obstacle Avoiding Rover</h2>
         <h3 class="project-subheader">ECE 110 Lab, December 2021</h3>
         <div class="project-media">
-          <img src="media/rover.jpg" alt="Rover Image" width="300" height="200">
+          <video width="300" height="200" controls>
+            <source src="media/rover.mp4" type="video/mp4">
+          </video>
         </div>
         <p class="project-description">This project entailed working in a group of 4 to create a 100% hardware based obstacle avoiding 
           rover which used ultrasonic sensors for object detection. Systems included automatic headlights, PWM-based speed control, 
-          and a DC-DC regulator. (Introduction to Electronics)
+          and a DC-DC regulator.
         </p>
+        
         <div class="skill-tags">
           <span class="skill-tag">Sensors</span>
           <span class="skill-tag">Autonomous</span>
           <span class="skill-tag">Power Electronics</span>
-          <span class="skill-tag">Motor Control</span>
           <span class="skill-tag">Analog Circuits</span>
           <span class="skill-tag">Collaborative</span>
         </div>
       </div>
-      <!-- Add more project boxes with skill tags as needed -->
     </div>
   </section>
 

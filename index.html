@@ -82,9 +82,31 @@
     margin-bottom: 10px;
   }
 
+  .project-subheader {
+  font-size: 18px;
+  color: #666;
+  margin-bottom: 15px;
+  }
+
   .project-description {
     font-size: 16px;
     color: #666;
+    margin-bottom: 15px;
+  }
+
+  .skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 10px;
+  }
+
+  .skill-tag {
+    background-color: #333;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 5px;
+    margin-right: 5px;
+    margin-bottom: 5px;
   }
 </style>
 </head>
@@ -119,16 +141,30 @@
       <div class="project-box">
         <h2 class="project-title">Project 1</h2>
         <p class="project-description">Description of Project 1.</p>
+        <div class="skill-tags">
+          <span class="skill-tag">HTML</span>
+          <span class="skill-tag">CSS</span>
+          <span class="skill-tag">JavaScript</span>
+        </div>
       </div>
       <div class="project-box">
-        <h2 class="project-title">Project 2</h2>
-        <p class="project-description">Description of Project 2.</p>
+        <h2 class="project-title">Obstacle Avoiding Rover</h2>
+        <h3 class="project-subheader">ECE 110 Lab, December 2021</h3>
+        <div class="project-media">
+          <img src="media/rover.jpg" alt="Rover Image">
+        </div>
+        <p class="project-description">This project entailed working in a group of 4 to create a 100% hardware based obstacle avoiding rover 
+          which used ultrasonic sensors for object detection. Systems included automatic headlights, PWM-based speed control, and a DC-DC regulator
+        </p>
+        <div class="skill-tags">
+          <span class="skill-tag">Sensors/Autonomous</span>
+          <span class="skill-tag">Power Electronics</span>
+          <span class="skill-tag">Motor Control</span>
+          <span class="skill-tag">Analog Circuits</span>
+          <span class="skill-tag">Collaborative</span>
+        </div>
       </div>
-      <div class="project-box">
-        <h2 class="project-title">Project 3</h2>
-        <p class="project-description">Description of Project 3.</p>
-      </div>
-      <!-- Add more project boxes as needed -->
+      <!-- Add more project boxes with skill tags as needed -->
     </div>
   </section>
 

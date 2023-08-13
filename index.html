@@ -164,6 +164,31 @@
     margin-right: 5px;
     margin-bottom: 5px;
   }
+
+  .linkedin-button {
+    display: inline-block;
+    padding: 10px 15px;
+    background-color: #0077B5; /* LinkedIn blue color */
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+  }
+
+  .linkedin-button img {
+    width: 20px; /* Adjust the image size as needed */
+    vertical-align: middle;
+    margin-right: 5px;
+  }
+
+  .linkedin-button:hover {
+    background-color: #005FAB; /* Darker shade on hover */
+  }
+
+  #connect{
+    padding: 50px;
+  }
+
 </style>
 </head>
 <body>
@@ -173,6 +198,7 @@
       <li><a href="#about">About</a></li>
       <li><a href="#experience">Professional Experience</a></li>
       <li><a href="#projects">Projects</a></li>
+      <li><a href="#connect">Connect</a></li>
     </ul>
   </nav>
 
@@ -218,42 +244,47 @@
     <ul class="experience-list">
       <li class="experience-item">
         <div class="experience-text">
-          Developed firmware to run gesture recognition ML on Zephyr RTOS and inference using a custom BLE service
+          Developed MCU firmware on Zephyr RTOS to gather accelerometer data (I2C), run gesture recognition ML model, and notify central
+          of resulting inference using a custom BLE service.
         </div>
       </li>
       <li class="experience-item">
         <div class="experience-text">
-          Developed firmware on Zephyr RTOS to subscribe to characteristic notifications and generate PWM signal to control flaps on UAV
+          Developed MCU firmware on Zephyr RTOS to subscribe to characteristic notifications and generate PWM signal to control flaps on 
+          a UAV.
         </div>
       </li>
       <li class="experience-item">
         <div class="experience-text">
-          Designed, fabricated, and tested a flexible printed dual band antenna for a WiFi daughter board which I designed for a custom MCU
+          Designed, fabricated, and tested a flexible printed dual band antenna for a WiFi daughter board which I designed for a 
+          custom MCU.
         </div>
       </li>
       <li class="experience-item">
         <div class="experience-text">
-          Designed an automated testbench for a custom MCU including C code for a comprehensive “self-test” on MCU as well as automation of Fanuc robot control and logging of recorded data using Python
+          Designed an automated testbench for a custom MCU including C code for a comprehensive “self-test” of MCU capabilities 
+          (Target connect, BLE, I2C) as well as automation of Fanuc robot control and SQL database logging of recorded data using Python.
         </div>
       </li>
       <li class="experience-item">
         <div class="experience-text">
-          Created a Python GUI for selective device testing to improve reliability test efficiency
+          Created a Python GUI for selective device testing to improve reliability test efficiency by up to ~70%.
         </div>
       </li>
       <li class="experience-item">
         <div class="experience-text">
-          Designed and fabricated a multi-zone capacitive touch sensor, interfaced with a custom MCU using C
+          Designed and fabricated a flexible, printed, multi-zone capacitive touch sensor, interfaced with a custom MCU using C to 
+          control a multi axis robot. Created a GUI to enhance UX and functionality.
         </div>
       </li>
       <li class="experience-item">
         <div class="experience-text">
-          Designed a flexible brushless motor ESC for a custom RC fixed wing, part of an interdisciplinary team
+          Designed a flexible brushless motor ESC for a custom RC fixed wing aircraft, part of an interdisciplinary team.
         </div>
       </li>
       <li class="experience-item">
         <div class="experience-text">
-          Wrote intuitive operations manual for 3D laser microscope and environmental chambers
+          Wrote intuitive operations manuals for 3D laser microscope and environmental chambers.
         </div>
       </li>
     </ul>
@@ -264,17 +295,19 @@
     <ul class="experience-list">
       <li class="experience-item">
         <div class="experience-text">
-          Designed and implemented a multi-channel multiplexor board which increased efficiency of the testing and programming of a proprietary MCU. Wrote a Python program to automatically connect to board and operate over BLE.
+          Designed and implemented a multi-channel multiplexor board which increased efficiency of the testing and programming of a 
+          proprietary MCU. Wrote a Python program to automatically connect to board and operate over BLE.
         </div>
       </li>
       <li class="experience-item">
         <div class="experience-text">
-          Designed, implemented, and tested a gesture-based control system for UAVs (quad and fixed wing) utilizing flexible sensors and a flexible hybrid microcontroller. Wrote code for MCU and host computer communicating over BLE.
+          Designed, implemented, and tested a gesture-based control system for UAVs (quad and fixed wing) utilizing flexible sensors 
+          and a flexible hybrid microcontroller. Wrote code for MCU and host computer communicating over BLE.
         </div>
       </li>
       <li class="experience-item">
         <div class="experience-text">
-          Wrote Python control system code to interpret data and convert to MAVLINK protocol instructions.
+          Wrote Python control system code to interpret sensor data and convert to MAVLINK protocol instructions.
         </div>
       </li>
       <li class="experience-item">
@@ -284,12 +317,14 @@
       </li>
       <li class="experience-item">
         <div class="experience-text">
-          Built a system based on BLE, CircuitPython, and Python to control a mechanical hand and visualize real-time data from peripheral sensors on a host computer.
+          Built a system based on BLE, CircuitPython, and Python to control a mechanical hand and visualize real-time 
+          data from peripheral sensors on a host computer.
         </div>
       </li>
       <li class="experience-item">
         <div class="experience-text">
-          Designed and fabricated motor control electronics for a 3D printed rover and developed a control system which relies on BLE data transmission between microcontrollers.
+          Designed and fabricated motor control electronics for a 3D printed rover and developed a control system which 
+          relies on BLE data transmission between microcontrollers.
         </div>
       </li>
     </ul>
@@ -324,11 +359,11 @@
       </div>
 
       <div class="project-box">
-        <h2 class="project-title">WiFi Operated Model Train Control Hub</h2>
+        <h2 class="project-title">WiFi Model Train Control Hub</h2>
         <h3 class="project-subheader">Personal Project, June 2023</h3>
         
         <div class="project-media">
-          <video width="150" height="300" controls>
+          <video controls muted width="300" height="200" controls>
             <source src="media/train.mp4" type="video/mp4">
           </video>
         </div>
@@ -337,7 +372,7 @@
           train that I have had since I was younger. The out of the box controls involved different switches for each switching track 
           and a bulky controller with a dial for speed control. I wanted to create a wireless enabled embedded systems solution to make
           the whole thing more efficient. My solution handles speed, direction, and track switching control all from a web server
-          hosted on the Pico W, meaning anybody on the LAN can control the train. All files and documentation are available on my GitHub
+          hosted on the Pico W. All files (PCB and firmware) and documentation are available on my GitHub.
           at the link below.
         </p>
         <div class="skill-tags">
@@ -357,16 +392,14 @@
         <h3 class="project-subheader">Personal Project, June 2023</h3>
         
         <div class="project-media">
-          <video width="150" height="300" controls>
-            <source src="media/train.mp4" type="video/mp4">
-          </video>
+          <img src="media/stock.jpg" alt="Ticker Image" width="220" height="300">
         </div>
         
         <p class="project-description">
           One of my personal interests is the stock market, but the cost of a digital ticker tape display can be $1000+. 
           Instead, I chose to make my own using a Raspberry Pi Pico W and a WS1218B LED strip (total cost ~$25). 
           The Raspberry Pi Pico W hosts a web server which holds an interactive list of stocks to display. 
-          Real time stock data including price and percent change are displayed in a scrolling fashion.
+          Real time stock data including ticker symbol, price, and percent change are displayed in a scrolling fashion.
         </p>
         <div class="skill-tags">
           <span class="skill-tag">Consumer Electronics</span>
@@ -503,7 +536,7 @@
         <p class="project-description">The goal of this project was to design a motion system to automate RF signal integrity testing.
           My role on the project was to design the entire system and build support for 2 dimensions of movement. I got familiar with Ansys HSFF,
           Marlin open source 3D printer firmware, used Python to interact over serial with an Arduino, and design and 3D print custom parts.
-          Thank you to Dr. Thong Nguyen and Dr. Jose Schutt-Aine for this experience.
+          Thank you to Dr. Thong Nguyen and Prof. Jose Schutt-Aine for this experience.
         </p>
         <div class="skill-tags">
           <span class="skill-tag">3D Printing</span>
@@ -542,7 +575,7 @@
         </div>
         <p class="project-description">This project entailed working in a group of 4 to create a 100% hardware based obstacle avoiding 
           rover which used ultrasonic sensors for object detection. Systems included automatic headlights, PWM-based speed control, 
-          and a DC-DC regulator.
+          and a DC-DC regulator (Zener).
         </p>
         
         <div class="skill-tags">
@@ -554,6 +587,15 @@
         </div>
       </div>
     </div>
+  </section>
+
+  <section id="connect">
+    <h1>Connect</h1>  
+    <a href="mailto:mgamota2@illinois.edu">mgamota2@illinois.edu</a>
+    <a class="linkedin-button" href="https://www.linkedin.com/in/michael-gamota-1513a721b/">
+      <img src="media/link.png" alt="LinkedIn">
+      Connect on LinkedIn
+    </a>
   </section>
 
   <footer>

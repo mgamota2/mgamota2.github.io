@@ -220,8 +220,9 @@
     </div>
     <div class="about-content">
       <h1>About Me</h1>
-      <a>Welcome! My name is Michael Gamota and I am a senior at the University of Illinois at Urbana-Champaign majoring 
-      in Electrical Engineering with minors in Computer Science and Business Administration.
+      <a>Welcome! My name is Michael Gamota and I am an incoming Electrical and Computer Engineering MS student at the University of Illinois
+         at Urbana-Champaign. I also received my undergraduate degree in Electrical Engineering from the University of Illinois at 
+         Urbana-Champaign.
       <br>
       <br>
       I have 3 summers of internship experience. I spent my first two summers of college interning at a research and development institute called 
@@ -231,7 +232,7 @@
       <br>
       <br>
       At school, I am balancing my academics with <em>practicum</em>, solving real world problems in collaborative environments, ranging from 
-      student engineering organizations to undergraduate research. This gives me a unique perspective, allowing me to appreciate the electronics ecosystem, 
+      student engineering organizations to research. This gives me a unique perspective, allowing me to appreciate the electronics ecosystem, 
       from various places on the R&D spectrum to industry product development and commercialization.
       <br>
       <br>
@@ -240,11 +241,27 @@
     </div>
   </section>
 
-
   <section id="experience">
     <h1>Professional Experience</h1>
-    <img id="experience-image" src="media/ti.png" alt="TI Logo" width="300" height="120">
+    <a href="https://www.ycombinator.com/companies/guardian-rf">
+      <img id="experience-image" src="media/guardian.png" alt="Guardian RF Logo" width="180" height="120">
+    </a>
+
+    <h2>Software Engineering Intern (Part-time)</h2>
+    <h3><em>Guardian RF, December 2024-Present</em></h3>
     
+    <ul class="experience-list">
+      <li class="experience-item">
+        <div class="experience-text">
+          Developing drone detection and tracking software.
+        </div>
+      </li>
+    </ul>
+
+    <a href="https://www.ti.com/">
+      <img id="experience-image" src="media/ti.png" alt="TI Logo" width="300" height="120">
+    </a>
+
     <h2>Applications Engineering Intern</h2>
     <h3><em>Texas Instruments, May 2024-August 2024</em></h3>
     
@@ -257,8 +274,9 @@
     </ul>
 
     <br>
-
-    <img id="experience-image" src="media/nf.png" alt="Nextflex Logo" width="300" height="70">
+    <a href="https://www.nextflex.us/">
+      <img id="experience-image" src="media/nf.png" alt="Nextflex Logo" width="300" height="70">
+    </a>
     
     <h2>FHE Fabrication Intern</h2>
     <h3><em>NextFlex, May 2023-August 2023</em></h3>
@@ -312,6 +330,10 @@
     </ul>
 
     <br>
+    <a href="https://www.nextflex.us/">
+      <img id="experience-image" src="media/nf.png" alt="Nextflex Logo" width="300" height="70">
+    </a>
+
     <h2>Electrical Engineering Intern</h2>
     <h3><em>NextFlex, May 2022-August 2022</em></h3>
     <ul class="experience-list">
@@ -358,27 +380,76 @@
 
     <div class="projects-container">
 
-      <div class="project-box">
-        <h2 class="project-title">FMCW mmWave Radar Research</h2>
-        <h3 class="project-subheader">Computational Imaging Group, Ongoing</h3>
-          <video width="325" height="190" controls>
-            <source src="media/radar.mp4" type="video/mp4">
+        <div class="project-box">
+          <h2 class="project-title">FMCW mmWave Radar Research</h2>
+          <h3 class="project-subheader">Computational Imaging Group, Ongoing</h3>
+            <video width="325" height="190" controls>
+              <source src="media/radar.mp4" type="video/mp4">
+            </video>
+          <p class="project-description">
+            I am in Prof. Minh Do's Computational Imaging research group at the University of Illinois. I have Dockerized code, converted 
+            a ROS system to ROS 2, and have converted system level Python code to C++. This has all been done to improve the performance of the radar data collection
+            system. The system includes an IWR1443BOOST radar board from TI and a DCA1000EVM also from TI to collect the ADC samples from the radar board. 
+            I am now developing various real time visualizations using various signal processing techniques.
+          </p>
+          <div class="skill-tags">
+            <span class="skill-tag">FMCW Radar</span>
+            <span class="skill-tag">Digital Signal Processing</span>
+            <span class="skill-tag">Systems Programming (C++, Python, Docker)</span>
+            <span class="skill-tag">Wireless Sensing</span>
+            <span class="skill-tag">Research</span>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/mgamota2/FMCW_mmWave" target="_blank"><i class="fa fa-external-link"></i> Visit Project</a>
+          </div>
+        </div>
+
+        <div class="project-box">
+        <h2 class="project-title">Schnorr Protocol Remote Access Fob</h2>
+        <h3 class="project-subheader">Senior Design Lab (ECE 445), December 2024</h3>
+          <video width="325" height="180" controls>
+            <source src="media/fob.mp4" type="video/mp4">
           </video>
         <p class="project-description">
-          I am in Prof. Minh Do's Computational Imaging research group at the University of Illinois. I have Dockerized code, converted 
-          a ROS system to ROS 2, and have converted system level Python code to C++. This has all been done to improve the performance of the radar data collection
-          system. The system includes an IWR1443BOOST radar board from TI and a DCA1000EVM also from TI to collect the ADC samples from the radar board. 
-          I am now developing various real time visualizations using various signal processing techniques.
+          After taking a cryptography course, I became aware of some vulnerabilities of remote access systems: replay, relay, and rolling 
+          jam attacks in particular. To solve this problem, I proposed designing a remote access system which leverages Schnorr Identification
+           Protocol to eliminate those vulnerabilities. Within a group of two other students, I designed a low power fob, dictating the wireless 
+           communication subsystem which also went on a receiver module,designed by a groupmate. Another groupmate designed an AC-DC converter 
+           to power the receiver. I also wrote the software for this project. Our group won the "Instructor's Award", one of three awards 
+           given out among 45 teams.
         </p>
         <div class="skill-tags">
-          <span class="skill-tag">FMCW Radar</span>
-          <span class="skill-tag">Digital Signal Processing</span>
-          <span class="skill-tag">Systems Programming (C++, Python, Docker)</span>
-          <span class="skill-tag">Wireless Sensing</span>
-          <span class="skill-tag">Research</span>
+          <span class="skill-tag">Cryptography</span>
+          <span class="skill-tag">Wireless Communication</span>
+          <span class="skill-tag">Embedded Software</span>
+          <span class="skill-tag">PCB Design</span>
+          <span class="skill-tag">Digital Communication</span>
         </div>
-         <div class="project-links">
-          <a href="https://github.com/mgamota2/FMCW_mmWave" target="_blank"><i class="fa fa-external-link"></i> Visit Project</a>
+        <div class="project-links">
+          <a href="https://www.youtube.com/watch?v=8Yq19Ia0oiQ&" target="_blank"><i class="fa fa-external-link"></i> View Demo </a>
+          <br>
+          <a href="https://github.com/mgamota2/SchnorrProtocolFob/blob/main/Final%20Report.pdf" target="_blank"><i class="fa fa-external-link"></i> View Report </a>
+        </div>
+      </div>
+
+      <div class="project-box">
+        <h2 class="project-title">FM Transmitter and Receiver </h2>
+        <h3 class="project-subheader">Wireless Communication Systems Lab (ECE 453), November 2024</h3>
+        <img src="media/fm.jpg" alt="FM Receiver/Transmitter" width="300" height="220">
+        <p class="project-description">
+          In parallel with learning about the building blocks of FM wireless communication (Oscillator, Mixer, Modulator, Demodulator, Mixer, Filter, 
+          Amplifier, Matching Network) during lectrues, we (in parterships) designed most of these modules in the lab, culminating in the assembly of a full 
+          transmitter and receiver FM system. Our receiver, which included down-conversion and demodulation stages was fully functional, and 
+          connecting it to an antenna allowed us to hear FM radio broadcasts.
+        </p>
+        <div class="skill-tags">
+          <span class="skill-tag">RF Engineering</span>
+          <span class="skill-tag">Wireless Communication</span>
+          <span class="skill-tag">PCB Layout</span>
+          <span class="skill-tag">High Frequency Measurement</span>
+        </div>
+        <div class="project-links">
+          <a href="https://github.com/mgamota2/FM_TX_RX" target="_blank"><i class="fa fa-external-link"></i> Visit Project</a>
         </div>
       </div>
 

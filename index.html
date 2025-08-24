@@ -220,20 +220,23 @@
     </div>
     <div class="about-content">
       <h1>About Me</h1>
-      <a>Welcome! My name is Michael Gamota and I am an Electrical and Computer Engineering MS student at the University of Illinois
+      <a>Welcome! My name is Michael Gamota and I am pursuing a Master's Degree in Electrical and Computer Engineering at the University of Illinois
          at Urbana-Champaign. I also received my undergraduate degree in Electrical Engineering from the University of Illinois at 
          Urbana-Champaign.
       <br>
       <br>
-      I have 3 summers of internship experience. I spent my first two summers of college interning at a research and development institute called 
+      I have 4 summers of internship experience. I spent my first two summers of college interning at a research and development institute called 
        NextFlex which has a mission of advancing flexible hybrid electronics (FHE) enabled products for industries including: healthcare, aerospace, defense, 
-      consumer electronics, automotive, transportation, and infrastructure. I spent my most recent summer as an Application Engineering intern at 
-      Texas Instruments, the largest analog semiconductor company in the world.
+      consumer electronics, automotive, transportation, and infrastructure. My third summer was spent as an Application Engineering intern at 
+      Texas Instruments, the largest analog semiconductor company in the world. This most recent summer, I worked at NVIDIA as a PCIe Architecture Intern.
       <br>
       <br>
       At school, I am balancing my academics with <em>practicum</em>, solving real world problems in collaborative environments, ranging from 
-      student engineering organizations to research. This gives me a unique perspective, allowing me to appreciate the electronics ecosystem, 
-      from various places on the R&D spectrum to industry product development and commercialization.
+      being being a teaching assistant to research.
+      <br>
+      <br>
+      <b>All together, this gives me a unique perspective, allowing me to appreciate the electronics ecosystem - from 
+      the R&D spectrum to industry product development and commercialization, and across different levels of abstraction, from silicon to systems.</b>
       <br>
       <br>
       The purpose of this site is to document my experiences as a student, engineer, and developer of innovative solutions.
@@ -247,13 +250,28 @@
       <img id="experience-image" src="media/guardian.png" alt="Guardian RF Logo" width="180" height="120">
     </a>
 
-    <h2>Software Engineering Intern (Part-time)</h2>
+    <h2>Hardware/Software Engineering Intern (Part-time)</h2>
     <h3><em>Guardian RF, December 2024-Present</em></h3>
     
     <ul class="experience-list">
       <li class="experience-item">
         <div class="experience-text">
-          Developing drone detection and tracking software.
+          Developing drone detection and tracking hardware and software.
+        </div>
+      </li>
+    </ul>
+
+    <a href="https://www.nvidia.com/en-us/">
+      <img id="experience-image" src="media/nvidia.png" alt="NVIDIA Logo" width="162" height="120">
+    </a>
+
+    <h2>PCIe Architecture Intern</h2>
+    <h3><em>NVIDIA, May 2025-August 2025</em></h3>
+    
+    <ul class="experience-list">
+      <li class="experience-item">
+        <div class="experience-text">
+          Researched architecture level improvements for PCIe IP.
         </div>
       </li>
     </ul>
@@ -377,8 +395,93 @@
   <br>
   <section id="projects">
     <h1>Projects</h1>
+    <h2>Here is a sampling of some interesting projects I've done</h2>
 
     <div class="projects-container">
+
+        <div class="project-box">
+          <h2 class="project-title"> Senior Design New Assignment Development</h2>
+          <h3 class="project-subheader">University of Illinois Urbana-Champaign ECE Dept (ECE 445), June 2025-August 2025</h3>
+          <img src="media/445cad.png" alt="Final Board CAD" width="300" height="220">
+          <p class="project-description">
+            As a teaching assistant for ECE 445, I was responsible for 6 teams of 2-3 senior ECE students, guiding them through the course from ideation 
+            to test and demonstration of their projects. I extended my TA position through the summer to update the existing 
+            PCB design introduction assignment for the class. The existing assignment was based on an ATMega microcontroller which was programmed 
+            to blink an LED with varying duty cycle. The new assignment that I developed is based on an STM32 MCU and the board that students will now 
+            design has an on-board H bridge IC and pin outs for several digital communication protocols and GPIOs.
+          </p>
+          <div class="skill-tags">
+            <span class="skill-tag">PCB Design</span>
+            <span class="skill-tag">Digital Communication</span>
+            <span class="skill-tag">Embedded Software</span>
+            <span class="skill-tag">Education</span>
+            <span class="skill-tag">Documentation</span>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/mgamota2/ECE445_Lab_Dev" target="_blank"><i class="fa fa-external-link"></i> Visit Project</a>
+          </div>
+        </div>
+
+        <div class="project-box">
+          <h2 class="project-title">Low Dropout Voltage Regulator Schematic</h2>
+          <h3 class="project-subheader">Analog IC Design (ECE 483), May 2025</h3>
+          <img src="media/483ldo.png" alt="LDO Schematic" width="400" height="220">
+          <p class="project-description">
+            The LDO project was the final project for the Analog IC Design course at UIUC. The project required my partner and I to make topological
+            and device sizing design choices to meet given specifications for input/output voltage, load current, load regulation, and line regulation
+            while minimizing quiescent current. This allowed us to apply our analog circuit knowledge gained from this class as well as use 
+            industry-relevant IC design tools. We did not do layout for this assignment.
+          </p>
+          <div class="skill-tags">
+            <span class="skill-tag">Analog Circuit Design</span>
+            <span class="skill-tag">Voltage Regulation</span>
+            <span class="skill-tag">Schematic Design</span>
+            <span class="skill-tag">Cadence Virtuoso</span>
+            <span class="skill-tag">Cadence Spectre</span>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/mgamota2/LDO_483" target="_blank"><i class="fa fa-external-link"></i> Visit Project</a>
+          </div>
+        </div>
+
+        <div class="project-box">
+          <h2 class="project-title">RISC-V RV32I Bitsliced Datapath</h2>
+          <h3 class="project-subheader">Introduction to VLSI Design (ECE 425), March 2025-April 2025</h3>
+          <img src="media/425layout.png" alt="Datapath Layout" width="220" height="220">
+          <p class="project-description">
+            This project was the main assignment for the Introduction to VLSI Design course at UIUC. There was a competition to create the smallest
+            bitsliced RV32I datapath (no shifter) starting from the transistor level. I placed in the top 5 of over 100 students.
+            This project taught me about the value of standard cells, simple best practices for routing, and gave me an understanding of the 
+            levels of abstraction that go into the design of a digital IC. The next project introduced the class to synthesis and automated PnR.
+          </p>
+          <div class="skill-tags">
+            <span class="skill-tag">IC Design</span>
+            <span class="skill-tag">IC Layout</span>
+            <span class="skill-tag">Schematic Design</span>
+            <span class="skill-tag">Cadence Virtuoso</span>
+          </div>
+        </div>
+
+        <div class="project-box">
+          <h2 class="project-title">FM Transmitter and Receiver </h2>
+          <h3 class="project-subheader">Wireless Communication Systems Lab (ECE 453), November 2024</h3>
+          <img src="media/fm.jpg" alt="FM Receiver/Transmitter" width="300" height="220">
+          <p class="project-description">
+            In parallel with learning about the building blocks of FM wireless communication (Oscillator, Mixer, Modulator, Demodulator, Mixer, Filter, 
+            Amplifier, Matching Network) during lectrues, we (in parterships) designed most of these modules in the lab, culminating in the assembly of a full 
+            transmitter and receiver FM system. Our receiver, which included down-conversion and demodulation stages was fully functional, and 
+            connecting it to an antenna allowed us to hear FM radio broadcasts.
+          </p>
+          <div class="skill-tags">
+            <span class="skill-tag">RF Engineering</span>
+            <span class="skill-tag">Wireless Communication</span>
+            <span class="skill-tag">PCB Layout</span>
+            <span class="skill-tag">High Frequency Measurement</span>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/mgamota2/FM_TX_RX" target="_blank"><i class="fa fa-external-link"></i> Visit Project</a>
+          </div>
+        </div>
 
         <div class="project-box">
           <h2 class="project-title">FMCW mmWave Radar Research</h2>
@@ -455,7 +558,7 @@
 
       <div class="project-box">
         <h2 class="project-title">Stepper Motor Controller</h2>
-        <h3 class="project-subheader">EV Concept/Advanced Digital Projects Lab, April 2024</h3>
+        <h3 class="project-subheader">EV Concept/Advanced Digital Projects Lab (ECE 395), April 2024</h3>
         <div class="project-media">
           <video width="325" height="190" controls>
             <source src="media/motor.mp4" type="video/mp4">
@@ -741,7 +844,7 @@
   </section>
 
   <footer>
-    <p>2024 Michael Gamota</p>
+    <p>2025 Michael Gamota</p>
   </footer>
 </body>
 </html>

@@ -3,854 +3,956 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Michael Gamota</title>
-<link rel="icon" href="media/download.png" type="image/jpeg">
+<title>Michael Gamota — ECE Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
+  :root {
+    --bg: #0a0a0f;
+    --surface: #12121a;
+    --surface2: #1a1a26;
+    --accent: #7DF9AA;
+    --accent2: #5B8AF7;
+    --accent3: #F7C948;
+    --text: #e8e8f0;
+    --muted: #7070a0;
+    --border: rgba(255,255,255,0.07);
+    --glow: 0 0 40px rgba(125,249,170,0.15);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
 
   body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    background-color: #f4f4f4;
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    overflow-x: hidden;
   }
 
+  /* --- NAV --- */
   nav {
-    background-color: #333;
-    color: #fff;
-    text-align: center;
-    padding: 10px 0;
     position: fixed;
-    width: 100%;
-    padding-right: 50px;
-    padding-left: 50px;
-    justify-content: space-between;
-    align-items: center;
+    top: 0; left: 0; right: 0;
     z-index: 1000;
+    padding: 20px 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(10,10,15,0.8);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
   }
 
-  nav ul {
-    list-style: none;
-    margin: 0;
-    padding: 5px;
-  }
-
-  nav ul li {
-    display: inline;
-    margin-right: 20px;
-    text-align: left;
-  }
+  nav ul { list-style: none; display: flex; gap: 36px; }
 
   nav ul li a {
     text-decoration: none;
-    color: #fff;
-    transition: color 0.3s;
+    color: var(--muted);
+    font-family: 'DM Mono', monospace;
+    font-size: 13px;
+    letter-spacing: 0.05em;
+    transition: color 0.2s;
   }
 
-  nav ul li a:hover {
-    color: #ff9900;
-  }
+  nav ul li a:hover { color: var(--accent); }
 
-  section {
-    text-align: center;
-    padding-left: 70px;
-    padding-right: 70px;
-  }
-
-  section h1 {
-    font-size: 36px;
-    color: #333;
-    margin-bottom: 20px;
-  }
-
-  #about {
-    background-color: #f7f7f7;
-    padding: 50px;
+  /* --- HERO --- */
+  #home {
+    min-height: 100vh;
     display: flex;
-    align-items: center;
-  }
-
-  #about .about-image {
-    width: 250px;
-    height: 400px; 
-    margin-right: 30px;
+    flex-direction: column;
+    justify-content: center;
+    padding: 120px 60px 100px;
+    position: relative;
     overflow: hidden;
   }
 
-  #about .about-image img {
+  .hero-grid-bg {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(125,249,170,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(125,249,170,0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+  }
+
+  .hero-glow {
+    position: absolute;
+    top: -200px; right: -200px;
+    width: 700px; height: 700px;
+    background: radial-gradient(circle, rgba(91,138,247,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-glow2 {
+    position: absolute;
+    bottom: -100px; left: 10%;
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(125,249,170,0.07) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 13px;
+    color: var(--accent);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    opacity: 0;
+    animation: fadeUp 0.6s 0.2s forwards;
+  }
+
+  .hero-name {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: clamp(52px, 8vw, 96px);
+    line-height: 0.95;
+    letter-spacing: -3px;
+    color: var(--text);
+    margin-bottom: 30px;
+    opacity: 0;
+    animation: fadeUp 0.6s 0.35s forwards;
+  }
+
+  .hero-name span { color: var(--accent); }
+
+  .hero-desc {
+    font-size: 18px;
+    color: var(--muted);
+    max-width: 540px;
+    line-height: 1.7;
+    margin-bottom: 48px;
+    opacity: 0;
+    animation: fadeUp 0.6s 0.5s forwards;
+  }
+
+  .hero-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    opacity: 0;
+    animation: fadeUp 0.6s 0.65s forwards;
+  }
+
+  .badge {
+    padding: 8px 16px;
+    border-radius: 100px;
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.05em;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--muted);
+  }
+
+  .badge.active {
+    background: rgba(125,249,170,0.1);
+    border-color: rgba(125,249,170,0.3);
+    color: var(--accent);
+  }
+
+  .hero-scroll {
+    position: absolute;
+    bottom: 40px;
+    left: 60px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    opacity: 0;
+    animation: fadeIn 1s 1.2s forwards;
+  }
+
+  .scroll-line {
+    width: 40px;
+    height: 1px;
+    background: var(--muted);
+    animation: expandLine 1s 1.4s forwards;
+    transform-origin: left;
+    transform: scaleX(0);
+  }
+
+  @keyframes expandLine { to { transform: scaleX(1); } }
+
+  /* --- SECTION BASE --- */
+  section { padding: 100px 60px; }
+
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 16px;
+  }
+
+  .section-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: clamp(32px, 5vw, 52px);
+    letter-spacing: -2px;
+    color: var(--text);
+    margin-bottom: 60px;
+    line-height: 1.1;
+  }
+
+  /* --- ABOUT --- */
+  #about {
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 80px;
+    align-items: start;
+    max-width: 1100px;
+  }
+
+  .about-photo-wrap {
+    position: relative;
+  }
+
+  .about-photo-wrap::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    border-radius: 16px;
+    z-index: 0;
+  }
+
+  .about-photo-wrap img {
     width: 100%;
-    height: 100%;
-    object-fit: cover; /* Maintain aspect ratio and cover the container */
-    display: block; /* Prevent any gaps beneath the image */
+    height: 360px;
+    object-fit: cover;
+    border-radius: 14px;
+    display: block;
+    position: relative;
+    z-index: 1;
+    filter: saturate(0.9);
   }
 
-  #about .about-content {
-    flex: 1;
+  .about-content p {
+    font-size: 16px;
+    color: var(--muted);
+    line-height: 1.8;
+    margin-bottom: 18px;
   }
 
-  #about h1 {
-    font-size: 36px;
-    color: #333;
+  .about-content p strong {
+    color: var(--text);
+    font-weight: 500;
+  }
+
+  .about-highlight {
+    margin-top: 36px;
+    padding: 24px;
+    background: rgba(125,249,170,0.05);
+    border: 1px solid rgba(125,249,170,0.2);
+    border-radius: 12px;
+    font-size: 15px;
+    color: var(--text);
+    line-height: 1.7;
+  }
+
+  /* --- EXPERIENCE --- */
+  #experience { background: var(--bg); }
+
+  .exp-list { max-width: 900px; }
+
+  .exp-item {
+    display: grid;
+    grid-template-columns: 160px 1fr;
+    gap: 40px;
+    padding: 36px 0;
+    border-bottom: 1px solid var(--border);
+    position: relative;
+  }
+
+  .exp-item:last-child { border-bottom: none; }
+
+  .exp-logo-wrap {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding-top: 4px;
+  }
+
+  .exp-logo-wrap img {
+    max-width: 160px;
+    max-height: 200px;
+    object-fit: contain;
+    filter: brightness(0) invert(1) opacity(0.6);
+    mix-blend-mode: screen;
+    transition: opacity 0.3s, filter 0.3s;
+  }
+
+  .exp-item:hover .exp-logo-wrap img {
+    filter: brightness(0) invert(1) opacity(1);
+  }
+
+  .exp-company {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 22px;
+    color: var(--text);
+    margin-bottom: 6px;
+    letter-spacing: -0.5px;
+  }
+
+  .exp-role {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--accent);
+    margin-bottom: 4px;
+    letter-spacing: 0;
+  }
+
+  .exp-date {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    margin-bottom: 16px;
+    letter-spacing: 0.05em;
+  }
+
+  .exp-bullets {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .exp-bullets li {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.7;
+    padding-left: 16px;
+    position: relative;
+  }
+
+  .exp-bullets li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-size: 12px;
+  }
+
+  /* --- PROJECTS --- */
+  #projects {
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 24px;
+  }
+
+  .project-card {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 28px;
+    transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .project-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .project-card:hover {
+    border-color: rgba(125,249,170,0.25);
+    transform: translateY(-4px);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5), 0 0 30px rgba(125,249,170,0.05);
+  }
+
+  .project-card:hover::before { opacity: 1; }
+
+  .project-card-img {
+    width: 100%;
+    height: auto;
+    object-fit: unset;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    filter: saturate(0.8);
+    transition: filter 0.3s;
+  }
+
+  .project-card:hover .project-card-img { filter: saturate(1); }
+
+  .project-card video {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
     margin-bottom: 20px;
   }
 
-  #about p {
+  .project-card-meta {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--accent2);
+    letter-spacing: 0.05em;
+    margin-bottom: 8px;
+  }
+
+  .project-card-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
     font-size: 18px;
-    color: #666;
-    line-height: 1.6;
-    padding-bottom: 5px;
+    color: var(--text);
+    margin-bottom: 12px;
+    line-height: 1.3;
   }
 
-  section p {
-    font-size: 18px;
-    color: #666;
-    line-height: 1.6;
-    
+  .project-card-desc {
+    font-size: 13.5px;
+    color: var(--muted);
+    line-height: 1.7;
+    margin-bottom: 20px;
   }
 
-  section a {
-    font-size: 18px;
-    color: #666;
-    line-height: 1.6;
-    text-align: center;
-    padding-left: 50px;
-    padding-right: 50px;
-  }
-
-  .experience-text {
-    text-align: justify;
-    margin-left: 20px; /* Adjust the space after the bullet point */
-    padding-top: 5px;
-  }
-
-  footer {
-    background-color: #333;
-    color: #fff;
-    text-align: center;
-    padding: 10px 0;
-  }
-  .projects-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-    gap: 20px;
-    padding: 20px;
-  }
-
-  .project-box {
-    background-color: #fff;
-    border-radius: 10px;
-    padding: 20px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  }
-
-  .project-title {
-    font-size: 24px;
-    margin-bottom: 10px;
-  }
-
-  .project-subheader {
-  font-size: 18px;
-  color: #666;
-  margin-bottom: 15px;
-  }
-
-  .project-description {
-    font-size: 16px;
-    color: #666;
-    margin-bottom: 15px;
-  }
-
-  .skill-tags {
+  .project-tags {
     display: flex;
     flex-wrap: wrap;
-    margin-top: 10px;
+    gap: 6px;
+    margin-bottom: 20px;
   }
 
-  .skill-tag {
-    background-color: #333;
-    color: #fff;
-    padding: 5px 10px;
-    border-radius: 5px;
-    margin-right: 5px;
-    margin-bottom: 5px;
+  .project-tag {
+    padding: 4px 10px;
+    border-radius: 100px;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    background: var(--surface2);
+    color: var(--muted);
+    border: 1px solid var(--border);
   }
 
-  .linkedin-button {
-    display: inline-block;
-    padding: 10px 15px;
-    background-color: #0077B5; /* LinkedIn blue color */
-    color: white;
+  .project-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    color: var(--accent);
     text-decoration: none;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
+    letter-spacing: 0.05em;
+    transition: gap 0.2s;
+    margin-right: 16px;
   }
 
-  .linkedin-button img {
-    width: 20px; /* Adjust the image size as needed */
-    vertical-align: middle;
-    margin-right: 5px;
+  .project-link:hover { gap: 10px; }
+
+  /* --- CONNECT --- */
+  #connect { background: var(--bg); }
+
+  .connect-inner {
+    max-width: 680px;
   }
 
-  .linkedin-button:hover {
-    background-color: #005FAB; /* Darker shade on hover */
+  .connect-inner p {
+    font-size: 18px;
+    color: var(--muted);
+    line-height: 1.7;
+    margin-bottom: 48px;
   }
 
-  #connect{
-    padding: 50px;
+  .connect-links {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
   }
 
+  .connect-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 28px;
+    border-radius: 10px;
+    font-family: 'DM Mono', monospace;
+    font-size: 13px;
+    letter-spacing: 0.05em;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+
+  .connect-btn.primary {
+    background: var(--accent);
+    color: #0a0a0f;
+    font-weight: 500;
+  }
+
+  .connect-btn.primary:hover {
+    background: #5BE896;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(125,249,170,0.3);
+  }
+
+  .connect-btn.secondary {
+    background: transparent;
+    color: var(--text);
+    border: 1px solid var(--border);
+  }
+
+  .connect-btn.secondary:hover {
+    border-color: rgba(255,255,255,0.2);
+    background: var(--surface);
+    transform: translateY(-2px);
+  }
+
+  /* --- FOOTER --- */
+  footer {
+    padding: 30px 60px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  footer p {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    color: var(--muted);
+  }
+
+  /* --- ANIMATIONS --- */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  /* Scroll reveal */
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* --- RESPONSIVE --- */
+  @media (max-width: 768px) {
+    nav { padding: 16px 24px; justify-content: center; }
+    nav ul { gap: 20px; }
+    section { padding: 70px 24px; }
+    #home { padding: 100px 24px 80px; }
+    .about-grid { grid-template-columns: 1fr; gap: 40px; }
+    .exp-item { grid-template-columns: 1fr; gap: 16px; }
+    .projects-grid { grid-template-columns: 1fr; }
+    footer { flex-direction: column; gap: 12px; }
+  }
 </style>
 </head>
 <body>
+
   <nav>
     <ul>
       <li><a href="#home">Home</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a href="#experience">Professional Experience</a></li>
+      <li><a href="#experience">Experience</a></li>
       <li><a href="#projects">Projects</a></li>
       <li><a href="#connect">Connect</a></li>
     </ul>
   </nav>
 
+  <!-- HERO -->
   <section id="home">
-    <img src="media/uiuc.jpg" alt="Cover Image" width="90%" height="22%">
+    <div class="hero-grid-bg"></div>
+    <div class="hero-glow"></div>
+    <div class="hero-glow2"></div>
+    <div class="hero-eyebrow">ECE @ UIUC · MS Candidate</div>
+    <h1 class="hero-name">Michael<br><span>Gamota</span></h1>
+    <div class="hero-badges">
+      <span class="badge active">Currently @ Guardian RF</span>
+      <span class="badge">Ex-NVIDIA</span>
+      <span class="badge">Ex-Texas Instruments</span>
+      <span class="badge">Ex-NextFlex</span>
+    </div>
+    <div class="hero-scroll">
+      <div class="scroll-line"></div>
+      Scroll to explore
+    </div>
+
+    <!-- ABOUT merged into home -->
+    <div class="about-grid reveal" style="margin-top: 80px; position: relative; z-index: 1;">
+      <div class="about-photo-wrap">
+        <img src="media/headshot1.jpg" alt="Michael Gamota">
+      </div>
+      <div class="about-content">
+        <p>
+          I'm pursuing a <strong>Master's Degree in Electrical and Computer Engineering</strong> at the University of Illinois at Urbana-Champaign, where I also completed my undergraduate degree in Electrical Engineering.
+        </p>
+        <p>
+          I have 4 summers of internship experience spanning the electronics ecosystem. My first two summers were spent at <strong>NextFlex</strong>, an R&D institute advancing flexible hybrid electronics for healthcare, aerospace, defense, and automotive industries. My third summer was at <strong>Texas Instruments</strong> as an Applications Engineering Intern on the Clocks and Timing Systems team. Most recently, I interned at <strong>NVIDIA</strong> as a PCIe Architecture Intern.
+        </p>
+        <p>
+          Outside of my internships, I balance academics with real-world <em>practicum</em> — serving as a teaching assistant and conducting research. I'm currently developing low-cost small UAV sensing hardware at <strong>Guardian RF</strong>, where our technology placed <strong>2nd out of 115 participants</strong> at the Department of Defense's CUAS Low-Cost Sensing Challenge.
+        </p>
+        <div class="about-highlight">
+          This breadth gives me a unique perspective across the electronics ecosystem — from R&D through commercialization, and across abstraction levels from silicon all the way to systems.
+        </div>
+      </div>
+    </div>
   </section>
 
-  <section id="about">
-    <div class="about-image">
-      <img src="media/headshot1.jpg" alt="Me">
-    </div>
-    <div class="about-content">
-      <h1>About Me</h1>
-      <a>Welcome! My name is Michael Gamota and I am pursuing a Master's Degree in Electrical and Computer Engineering at the University of Illinois
-         at Urbana-Champaign. I also received my undergraduate degree in Electrical Engineering from the University of Illinois at 
-         Urbana-Champaign.
-      <br>
-      <br>
-      I have 4 summers of internship experience. I spent my first two summers of college interning at a research and development institute called 
-       NextFlex which has a mission of advancing flexible hybrid electronics (FHE) enabled products for industries including: healthcare, aerospace, defense, 
-      consumer electronics, automotive, transportation, and infrastructure. My third summer was spent as an Application Engineering intern at 
-      Texas Instruments, the largest analog semiconductor company in the world. This most recent summer, I worked at NVIDIA as a PCIe Architecture Intern.
-      <br>
-      <br>
-      At school, I am balancing my academics with <em>practicum</em>, solving real world problems in collaborative environments, ranging from 
-      being being a teaching assistant to research.
-      <br>
-      <br>
-      I am currently developing low-cost small UAV sensing hardware at Guardian RF. Recently, our technology placed second out of a field of 115 participants at the Department
-      of Defense's CUAS Low-Cost sensing challenge.
-      <br>
-      <br>
-      <b>All combined, this gives me a unique perspective, allowing me to appreciate the electronics ecosystem—from the R&D spectrum to industry product development 
-        and commercialization, and across different levels of abstraction, from silicon to systems.</b>
-      <br>
-      <br>
-      The purpose of this site is to document my experiences as a student, engineer, and developer of innovative solutions.
-      </a>
-    </div>
-  </section>
-
+  <!-- EXPERIENCE -->
   <section id="experience">
-    <h1>Professional Experience</h1>
-    <a href="https://www.guardianrf.com/">
-      <img id="experience-image" src="media/guardian.png" alt="Guardian RF Logo" width="180" height="120">
-    </a>
+    <div class="section-label">Career</div>
+    <h2 class="section-title">Professional Experience</h2>
+    <div class="exp-list">
 
-    <h2>Hardware/Software Engineering Intern (Part-time)</h2>
-    <h3><em>Guardian RF, December 2024-Present</em></h3>
-    
-    <ul class="experience-list">
-      <li class="experience-item">
-        <div class="experience-text">
-          Developing drone detection and tracking hardware and software.
+      <div class="exp-item reveal">
+        <div class="exp-logo-wrap">
+          <a href="https://www.guardianrf.com/" target="_blank"><img src="media/guardian.png" alt="Guardian RF"></a>
         </div>
-      </li>
-    </ul>
-
-    <a href="https://www.nvidia.com/en-us/">
-      <img id="experience-image" src="media/nvidia.png" alt="NVIDIA Logo" width="162" height="120">
-    </a>
-
-    <h2>PCIe Architecture Intern</h2>
-    <h3><em>NVIDIA, May 2025-August 2025</em></h3>
-    
-    <ul class="experience-list">
-      <li class="experience-item">
-        <div class="experience-text">
-          Researched architecture level improvements for PCIe IP.
-        </div>
-      </li>
-    </ul>
-
-    <a href="https://www.ti.com/">
-      <img id="experience-image" src="media/ti.png" alt="TI Logo" width="300" height="120">
-    </a>
-
-    <h2>Applications Engineering Intern</h2>
-    <h3><em>Texas Instruments, May 2024-August 2024</em></h3>
-    
-    <ul class="experience-list">
-      <li class="experience-item">
-        <div class="experience-text">
-          Developed software and hardware to support Clocks and Timing Systems team products.
-        </div>
-      </li>
-    </ul>
-
-    <br>
-    <a href="https://www.nextflex.us/">
-      <img id="experience-image" src="media/nf.png" alt="Nextflex Logo" width="300" height="70">
-    </a>
-    
-    <h2>FHE Fabrication Intern</h2>
-    <h3><em>NextFlex, May 2023-August 2023</em></h3>
-    
-    <ul class="experience-list">
-      <li class="experience-item">
-        <div class="experience-text">
-          Developed MCU firmware on Zephyr RTOS to gather accelerometer data (I2C), run gesture recognition ML model, and notify central
-          of resulting inference using a custom BLE service.
-        </div>
-      </li>
-      <li class="experience-item">
-        <div class="experience-text">
-          Developed MCU firmware on Zephyr RTOS to subscribe to characteristic notifications and generate PWM signal to control flaps on 
-          a UAV.
-        </div>
-      </li>
-      <li class="experience-item">
-        <div class="experience-text">
-          Designed, fabricated, and tested a flexible printed dual band antenna for a WiFi daughter board which I designed for a 
-          custom MCU.
-        </div>
-      </li>
-      <li class="experience-item">
-        <div class="experience-text">
-          Designed an automated testbench for a custom MCU including C code for a comprehensive “self-test” of MCU capabilities 
-          (Target connect, BLE, I2C) as well as automation of Fanuc robot control and SQL database logging of recorded data using Python.
-        </div>
-      </li>
-      <li class="experience-item">
-        <div class="experience-text">
-          Created a Python GUI for selective device testing to improve reliability test efficiency by up to ~70%.
-        </div>
-      </li>
-      <li class="experience-item">
-        <div class="experience-text">
-          Designed and fabricated a flexible, printed, multi-zone capacitive touch sensor, interfaced with a custom MCU using C to 
-          control a multi axis robot. Created a GUI to enhance UX and functionality.
-        </div>
-      </li>
-      <li class="experience-item">
-        <div class="experience-text">
-          Designed a flexible brushless motor ESC for a custom RC fixed wing aircraft, part of an interdisciplinary team.
-        </div>
-      </li>
-      <li class="experience-item">
-        <div class="experience-text">
-          Wrote intuitive operations manuals for 3D laser microscope and environmental chambers.
-        </div>
-      </li>
-    </ul>
-
-    <br>
-    <a href="https://www.nextflex.us/">
-      <img id="experience-image" src="media/nf.png" alt="Nextflex Logo" width="300" height="70">
-    </a>
-
-    <h2>Electrical Engineering Intern</h2>
-    <h3><em>NextFlex, May 2022-August 2022</em></h3>
-    <ul class="experience-list">
-      <li class="experience-item">
-        <div class="experience-text">
-          Designed and implemented a multi-channel multiplexor board which increased efficiency of the testing and programming of a 
-          proprietary MCU. Wrote a Python program to automatically connect to board and operate over BLE.
-        </div>
-      </li>
-      <li class="experience-item">
-        <div class="experience-text">
-          Designed, implemented, and tested a gesture-based control system for UAVs (quad and fixed wing) utilizing flexible sensors 
-          and a flexible hybrid microcontroller. Wrote code for MCU and host computer communicating over BLE.
-        </div>
-      </li>
-      <li class="experience-item">
-        <div class="experience-text">
-          Wrote Python control system code to interpret sensor data and convert to MAVLINK protocol instructions.
-        </div>
-      </li>
-      <li class="experience-item">
-        <div class="experience-text">
-          Verified control systems using multiple Linux-based simulators and ran hardware tests and missions.
-        </div>
-      </li>
-      <li class="experience-item">
-        <div class="experience-text">
-          Built a system based on BLE, CircuitPython, and Python to control a mechanical hand and visualize real-time 
-          data from peripheral sensors on a host computer.
-        </div>
-      </li>
-      <li class="experience-item">
-        <div class="experience-text">
-          Designed and fabricated motor control electronics for a 3D printed rover and developed a control system which 
-          relies on BLE data transmission between microcontrollers.
-        </div>
-      </li>
-    </ul>
-  </section>
-
-  <br>
-  <section id="projects">
-    <h1>Projects</h1>
-    <h2>Here is a sampling of some interesting projects I've done</h2>
-
-    <div class="projects-container">
-
-      <div class="project-box">
-          <h2 class="project-title"> Digital Random Number Generator IC </h2>
-          <h3 class="project-subheader">University of Illinois Urbana-Champaign ECE Dept (ECE 427), August 2025-November 2025</h3>
-          <img src="media/chip.jpg" alt="Chip Layout" width="300" height="300">
-          <p class="project-description">
-            I had the amazing opportunity to work with a team to design and tape out an integrated circuit of our choice in TSMC 65nm. 
-            Our design is a digital random number generator which leverages two different methods for entropy extraction from physical 
-            processes and then condition that entropy based on requests from off-chip CPU. My responsibilities were: schematic,layout, and
-            simulation of a calibratable StrongARM latch-based entropy source, chip debug architecture and instruction format, and 
-            final integration. 
-          </p>
-          <div class="skill-tags">
-            <span class="skill-tag">Circuit Design and Simulation</span>
-            <span class="skill-tag">Chip Design and Layout</span>
-            <span class="skill-tag">SystemVerilog</span>
-            <span class="skill-tag">Simulation</span>
-            <span class="skill-tag">Cadence Virtuoso</span>
-          </div>
-          <!-- <div class="project-links">
-            <a href="https://github.com/mgamota2/ECE445_Lab_Dev" target="_blank"><i class="fa fa-external-link"></i> Visit Project</a>
-          </div> -->
-        </div>
-
-        <div class="project-box">
-          <h2 class="project-title"> Senior Design New Assignment Development</h2>
-          <h3 class="project-subheader">University of Illinois Urbana-Champaign ECE Dept (ECE 445), June 2025-August 2025</h3>
-          <img src="media/445cad.png" alt="Final Board CAD" width="300" height="220">
-          <p class="project-description">
-            As a teaching assistant for ECE 445, I was responsible for 6 teams of 2-3 senior ECE students, guiding them through the course from ideation 
-            to test and demonstration of their projects. I extended my TA position through the summer to update the existing 
-            PCB design introduction assignment for the class. The existing assignment was based on an ATMega microcontroller which was programmed 
-            to blink an LED with varying duty cycle. The new assignment that I developed is based on an STM32 MCU and the board that students will now 
-            design has an on-board H bridge IC and pin outs for several digital communication protocols and GPIOs.
-          </p>
-          <div class="skill-tags">
-            <span class="skill-tag">PCB Design</span>
-            <span class="skill-tag">Digital Communication</span>
-            <span class="skill-tag">Embedded Software</span>
-            <span class="skill-tag">Education</span>
-            <span class="skill-tag">Documentation</span>
-          </div>
-          <div class="project-links">
-            <a href="https://github.com/mgamota2/ECE445_Lab_Dev" target="_blank"><i class="fa fa-external-link"></i> Visit Project</a>
-          </div>
-        </div>
-
-        <div class="project-box">
-          <h2 class="project-title">Low Dropout Voltage Regulator Schematic</h2>
-          <h3 class="project-subheader">Analog IC Design (ECE 483), May 2025</h3>
-          <img src="media/483ldo.png" alt="LDO Schematic" width="400" height="220">
-          <p class="project-description">
-            The LDO project was the final project for the Analog IC Design course at UIUC. The project required my partner and I to make topological
-            and device sizing design choices to meet given specifications for input/output voltage, load current, load regulation, and line regulation
-            while minimizing quiescent current. This allowed us to apply our analog circuit knowledge gained from this class as well as use 
-            industry-relevant IC design tools. We did not do layout for this assignment.
-          </p>
-          <div class="skill-tags">
-            <span class="skill-tag">Analog Circuit Design</span>
-            <span class="skill-tag">Voltage Regulation</span>
-            <span class="skill-tag">Schematic Design</span>
-            <span class="skill-tag">Cadence Virtuoso</span>
-            <span class="skill-tag">Cadence Spectre</span>
-          </div>
-          <div class="project-links">
-            <a href="https://github.com/mgamota2/LDO_483" target="_blank"><i class="fa fa-external-link"></i> Visit Project</a>
-          </div>
-        </div>
-
-        <div class="project-box">
-          <h2 class="project-title">RISC-V RV32I Bitsliced Datapath</h2>
-          <h3 class="project-subheader">Introduction to VLSI Design (ECE 425), March 2025-April 2025</h3>
-          <img src="media/425layout.PNG" alt="Datapath Layout" width="220" height="220">
-          <p class="project-description">
-            This project was the main assignment for the Introduction to VLSI Design course at UIUC. There was a competition to create the smallest
-            bitsliced RV32I datapath (no shifter) starting from the transistor level. I placed in the top 5 of over 100 students.
-            This project taught me about the value of standard cells, simple best practices for routing, and gave me an understanding of the 
-            levels of abstraction that go into the design of a digital IC. The next project introduced the class to synthesis and automated PnR.
-          </p>
-          <div class="skill-tags">
-            <span class="skill-tag">IC Design</span>
-            <span class="skill-tag">IC Layout</span>
-            <span class="skill-tag">Schematic Design</span>
-            <span class="skill-tag">Cadence Virtuoso</span>
-          </div>
-        </div>
-
-        <div class="project-box">
-          <h2 class="project-title">FMCW mmWave Radar Research</h2>
-          <h3 class="project-subheader">Computational Imaging Group, Jan-Dec 2024</h3>
-            <video width="325" height="190" controls>
-              <source src="media/radar.mp4" type="video/mp4">
-            </video>
-          <p class="project-description">
-            I am in Prof. Minh Do's Computational Imaging research group at the University of Illinois. I have Dockerized code, converted 
-            a ROS system to ROS 2, and have converted system level Python code to C++. This has all been done to improve the performance of the radar data collection
-            system. The system includes an IWR1443BOOST radar board from TI and a DCA1000EVM also from TI to collect the ADC samples from the radar board. 
-            I am now developing various real time visualizations using various signal processing techniques.
-          </p>
-          <div class="skill-tags">
-            <span class="skill-tag">FMCW Radar</span>
-            <span class="skill-tag">Digital Signal Processing</span>
-            <span class="skill-tag">Systems Programming (C++, Python, Docker)</span>
-            <span class="skill-tag">Wireless Sensing</span>
-            <span class="skill-tag">Research</span>
-          </div>
-          <div class="project-links">
-            <a href="https://github.com/mgamota2/FMCW_mmWave" target="_blank"><i class="fa fa-external-link"></i> Visit Project</a>
-          </div>
-        </div>
-
-        <div class="project-box">
-        <h2 class="project-title">Schnorr Protocol Remote Access Fob</h2>
-        <h3 class="project-subheader">Senior Design Lab (ECE 445), December 2024</h3>
-          <video width="325" height="180" controls>
-            <source src="media/fob.mp4" type="video/mp4">
-          </video>
-        <p class="project-description">
-          After taking a cryptography course, I became aware of some vulnerabilities of remote access systems: replay, relay, and rolling 
-          jam attacks in particular. To solve this problem, I proposed designing a remote access system which leverages Schnorr Identification
-           Protocol to eliminate those vulnerabilities. Within a group of two other students, I designed a low power fob, dictating the wireless 
-           communication subsystem which also went on a receiver module,designed by a groupmate. Another groupmate designed an AC-DC converter 
-           to power the receiver. I also wrote the software for this project. Our group won the "Instructor's Award", one of three awards 
-           given out among 45 teams.
-        </p>
-        <div class="skill-tags">
-          <span class="skill-tag">Cryptography</span>
-          <span class="skill-tag">Wireless Communication</span>
-          <span class="skill-tag">Embedded Software</span>
-          <span class="skill-tag">PCB Design</span>
-          <span class="skill-tag">Digital Communication</span>
-        </div>
-        <div class="project-links">
-          <a href="https://www.youtube.com/watch?v=8Yq19Ia0oiQ&" target="_blank"><i class="fa fa-external-link"></i> View Demo </a>
-          <br>
-          <a href="https://github.com/mgamota2/SchnorrProtocolFob/blob/main/Final%20Report.pdf" target="_blank"><i class="fa fa-external-link"></i> View Report </a>
+        <div>
+          <div class="exp-company">Guardian RF</div>
+          <div class="exp-role">Hardware/Software Engineering Intern (Part-time)</div>
+          <div class="exp-date">December 2024 — Present</div>
+          <ul class="exp-bullets">
+            <li>Developing hardware and software for drone detection and tracking.</li>
+          </ul>
         </div>
       </div>
 
-      <div class="project-box">
-        <h2 class="project-title">FM Transmitter and Receiver </h2>
-        <h3 class="project-subheader">Wireless Communication Systems Lab (ECE 453), November 2024</h3>
-        <img src="media/fm.jpg" alt="FM Receiver/Transmitter" width="300" height="220">
-        <p class="project-description">
-          In parallel with learning about the building blocks of FM wireless communication (Oscillator, Mixer, Modulator, Demodulator, Mixer, Filter, 
-          Amplifier, Matching Network) during lectrues, we (in parterships) designed most of these modules in the lab, culminating in the assembly of a full 
-          transmitter and receiver FM system. Our receiver, which included down-conversion and demodulation stages was fully functional, and 
-          connecting it to an antenna allowed us to hear FM radio broadcasts.
-        </p>
-        <div class="skill-tags">
-          <span class="skill-tag">RF Engineering</span>
-          <span class="skill-tag">Wireless Communication</span>
-          <span class="skill-tag">PCB Layout</span>
-          <span class="skill-tag">High Frequency Measurement</span>
+      <div class="exp-item reveal">
+        <div class="exp-logo-wrap">
+          <a href="https://www.nvidia.com/" target="_blank"><img src="media/nvidia.png" alt="NVIDIA"></a>
         </div>
-        <div class="project-links">
-          <a href="https://github.com/mgamota2/FM_TX_RX" target="_blank"><i class="fa fa-external-link"></i> Visit Project</a>
+        <div>
+          <div class="exp-company">NVIDIA</div>
+          <div class="exp-role">PCIe Architecture Intern</div>
+          <div class="exp-date">May 2025 — August 2025</div>
+          <ul class="exp-bullets">
+            <li>Researched architecture-level improvements for PCIe IP.</li>
+          </ul>
         </div>
       </div>
 
-      <div class="project-box">
-        <h2 class="project-title">Stepper Motor Controller</h2>
-        <h3 class="project-subheader">EV Concept/Advanced Digital Projects Lab (ECE 395), April 2024</h3>
-        <div class="project-media">
-          <video width="325" height="190" controls>
-            <source src="media/motor.mp4" type="video/mp4">
-          </video>
+      <div class="exp-item reveal">
+        <div class="exp-logo-wrap">
+          <a href="https://www.ti.com/" target="_blank"><img src="media/ti.png" alt="Texas Instruments"></a>
         </div>
-        <p class="project-description">
-          In the Advanced Digital Systems Labratory this semester, I completed the design, assembly, programming, and testing of a stepper motor controller for the EV Concept car. 
-          It will be used to control a motor which will turn the steering column. This board allows input from either the CAN bus which runs throughout the vehicle or 
-          over a USB COM port (useful for unit testing) which is then converted in software to a PWM signal which turns the motor a specified number of degrees.
-          A complete report is available below.
-        </p>
-        <div class="skill-tags">
-          <span class="skill-tag">Automotive Motor Control</span>
-          <span class="skill-tag">Analog Circuit Design</span>
-          <span class="skill-tag">Embedded Systems</span>
-          <span class="skill-tag">PCB Design</span>
-          <span class="skill-tag">Digital Communication</span>
-        </div>
-        <div class="project-links">
-          <a href="https://github.com/mgamota2/StepperMotorController/blob/main/ECE%20395%20Final%20Report.pdf" target="_blank"><i class="fa fa-external-link"></i> Visit Project</a>
+        <div>
+          <div class="exp-company">Texas Instruments</div>
+          <div class="exp-role">Applications Engineering Intern</div>
+          <div class="exp-date">May 2024 — August 2024</div>
+          <ul class="exp-bullets">
+            <li>Developed software and hardware to support Clocks and Timing Systems team products.</li>
+          </ul>
         </div>
       </div>
 
-      <div class="project-box">
-        <h2 class="project-title">Water Leak Sensor with Email Alerts</h2>
-        <h3 class="project-subheader">Personal Project, July 2023</h3>
-          <img src="media/leak.jpg" alt="Leak Sensor Image" width="220" height="300">
-        <p class="project-description">
-          This project is a water leak detector for a multitude of applications. I designed a PCB based sensor as well as an analog circuit 
-          which is connected the the ADC on a Raspberry Pi Pico W to detect water on the sensor. The Pico W measures battery percentage and sends an email notification 
-          when the battery is running low. It also sends multiple email alerts when a leak is detected. Any number of sensor boards can
-          be wired in parallel which creates applications in various environments.
-        </p>
-        <div class="skill-tags">
-          <span class="skill-tag">PCB Design</span>
-          <span class="skill-tag">Analog Circuit Design</span>
-          <span class="skill-tag">Smart Home</span>
-          <span class="skill-tag">Embedded Systems</span>
-          <span class="skill-tag">Wireless Communication</span>
+      <div class="exp-item reveal">
+        <div class="exp-logo-wrap">
+          <a href="https://www.nextflex.us/" target="_blank"><img src="media/nf.png" alt="NextFlex"></a>
         </div>
-        <div class="project-links">
-          <a href="https://github.com/mgamota2/PicoW/tree/main/Water%20Sensor" target="_blank"><i class="fa fa-external-link"></i> Visit Project</a>
+        <div>
+          <div class="exp-company">NextFlex</div>
+          <div class="exp-role">FHE Fabrication Intern</div>
+          <div class="exp-date">May 2023 — August 2023</div>
+          <ul class="exp-bullets">
+            <li>Developed MCU firmware on Zephyr RTOS for accelerometer gesture recognition with BLE notification via custom service.</li>
+            <li>Designed, fabricated, and tested a flexible printed dual-band WiFi antenna for a custom MCU daughter board.</li>
+            <li>Built an automated testbench with Fanuc robot control and SQL data logging in Python; created a GUI improving test efficiency by ~70%.</li>
+            <li>Designed a flexible multi-zone capacitive touch sensor with C firmware to control a multi-axis robot.</li>
+            <li>Designed a flexible brushless motor ESC for a custom RC fixed-wing aircraft.</li>
+          </ul>
         </div>
       </div>
 
-      <div class="project-box">
-        <h2 class="project-title">WiFi Model Train Control Hub</h2>
-        <h3 class="project-subheader">Personal Project, June 2023</h3>
-        
-        <div class="project-media">
-          <video controls muted width="300" height="200" controls>
-            <source src="media/train.mp4" type="video/mp4">
-          </video>
+      <div class="exp-item reveal">
+        <div class="exp-logo-wrap">
+          <a href="https://www.nextflex.us/" target="_blank"><img src="media/nf.png" alt="NextFlex"></a>
         </div>
-        <p class="project-description">
-          Personally I think this is one of my coolest projects. I used a Raspberry Pi Pico W to create a control hub for a model
-          train that I have had since I was younger. The out of the box controls involved different switches for each switching track 
-          and a bulky controller with a dial for speed control. I wanted to create a wireless enabled embedded systems solution to make
-          the whole thing more efficient. My solution handles speed, direction, and track switching control all from a web server
-          hosted on the Pico W. All files (PCB and firmware) and documentation are available on my GitHub at the link below.
-        </p>
-        <div class="skill-tags">
-          <span class="skill-tag">PCB Design</span>
-          <span class="skill-tag">Power Electronics</span>
-          <span class="skill-tag">Consumer Electronics</span>
-          <span class="skill-tag">Embedded Systems</span>
-          <span class="skill-tag">Wireless Communication (WiFi)</span>
-        </div>
-        <div class="project-links">
-          <a href="https://github.com/mgamota2/PicoW/tree/main/TrainControl" target="_blank"><i class="fa fa-external-link"></i> Visit Project</a>
+        <div>
+          <div class="exp-company">NextFlex</div>
+          <div class="exp-role">Electrical Engineering Intern</div>
+          <div class="exp-date">May 2022 — August 2022</div>
+          <ul class="exp-bullets">
+            <li>Designed a multi-channel multiplexor board and Python BLE automation to increase MCU testing/programming efficiency.</li>
+            <li>Designed and implemented a gesture-based UAV control system using flexible sensors and a hybrid microcontroller over BLE.</li>
+            <li>Wrote Python MAVLINK control code and verified systems using Linux simulators with full hardware flight tests.</li>
+            <li>Built a BLE + CircuitPython system to control a mechanical hand with real-time sensor visualization.</li>
+          </ul>
         </div>
       </div>
 
-      <div class="project-box">
-        <h2 class="project-title">Real-Time Stock Performance Display</h2>
-        <h3 class="project-subheader">Personal Project, June 2023</h3>
-        
-        <div class="project-media">
-          <img src="media/stock.jpg" alt="Ticker Image" width="220" height="300">
-        </div>
-        
-        <p class="project-description">
-          One of my personal interests is the stock market, but the cost of a digital ticker tape display can be $1000+. 
-          Instead, I chose to make my own using a Raspberry Pi Pico W and a WS1218B LED strip (total cost ~$25). 
-          The Raspberry Pi Pico W hosts a web server which holds an interactive list of stocks to display. 
-          Real time stock data including ticker symbol, price, and percent change are displayed in a scrolling fashion.
-        </p>
-        <div class="skill-tags">
-          <span class="skill-tag">Consumer Electronics</span>
-          <span class="skill-tag">API</span>
-          <span class="skill-tag">Smart Home</span>
-          <span class="skill-tag">Embedded Systems</span>
-          <span class="skill-tag">Wireless Communication (WiFi)</span>
-        </div>
-        <div class="project-links">
-          <a href="https://github.com/mgamota2/PicoW/tree/main/Ticker%20Tape" target="_blank"><i class="fa fa-external-link"></i> Visit Project</a>
-        </div>
-      </div>
-
-      <div class="project-box">
-        <h2 class="project-title">USB-CAN Converter</h2>
-        <h3 class="project-subheader">Illinois EV Concept, May 2023</h3>
-        <div class="project-media">
-          <img src="media/usbcan.jpg" alt="USB-CAN Image" width="220" height="300">
-        </div>
-        <p class="project-description">
-          This project is designed to create bidirectional communication between a PC on board the vehicle and our sensors and driving 
-          systems to enable autonomous control. 
-          All of our sensors and systems use a CAN bus to communicate, my solution allows the CAN transmitted data to be fed into 
-          algorithms running on the PC. The PC then returns instructions to be sent to our motor controller, battery management system, 
-          steering system, and brakes.
-        </p>
-        <div class="skill-tags">
-          <span class="skill-tag">PCB Design</span>
-          <span class="skill-tag">Digital Communication</span>
-          <span class="skill-tag">Automotive</span>
-          <span class="skill-tag">Autonomous</span>
-          <span class="skill-tag">Embedded Systems</span>
-        </div>
-        
-      </div>
-
-      <div class="project-box">
-        <h2 class="project-title">Location Logging and Display on FPGA</h2>
-        <h3 class="project-subheader">ECE 385, April 2023</h3>
-        <div class="project-media">
-          <img src="media/385final.jpg" alt="GPS Image" width="300" height="200">
-        </div>
-        <p class="project-description">
-          This was my final project in my Digital Systems Lab and involved developing a UART RX, NMEA message parser, data storage format,
-           and an VGA graphics driver in SystemVerilog. The functionality of this design included timestamped location logging 
-           (20 yard resolution) as well as the ability to display the logged locations on a monitor. I implemented this on an Intel 
-           FPGA using Quartus tools in SystemVerilog. There is a detailed report at the link below.
-        </p>
-        
-        <div class="skill-tags">
-          <span class="skill-tag">Digital Communication</span>
-          <span class="skill-tag">Graphics</span>
-          <span class="skill-tag">GNSS</span>
-          <span class="skill-tag">FPGA</span>
-          <span class="skill-tag">SystemVerilog</span>
-        </div>
-        <div class="project-links">
-          <a href="https://github.com/mgamota2/ECE385/blob/main/Final%20Project/ECE%20385_%20Final%20Project%20Report.pdf" target="_blank"><i class="fa fa-external-link"></i> Visit Project</a>
-        </div>
-      </div>
-
-        <div class="project-box">
-          <h2 class="project-title">CPU on FPGA</h2>
-          <h3 class="project-subheader">ECE 385, February 2023</h3>
-          <div class="project-media">
-            <img src="media/lc3.jpg" alt="LC3 Image" width="230" height="300">
-          </div>
-          <p class="project-description">
-            This project was part of my Digital Systems Lab and built upon earlier courses where we studied a CPU architecture called
-            Little Computer 3 (LC-3). The ISA is similar to the simpler extensions of RISC-V like RV32I. To complete this project,
-            I implemented the ISA on an Intel FPGA using Quartus tools in SystemVerilog.
-          </p>
-          <div class="skill-tags">
-            <span class="skill-tag">Computer Architecture</span>
-            <span class="skill-tag">CPU Design</span>
-            <span class="skill-tag">Digital Systems</span>
-            <span class="skill-tag">FPGA</span>
-            <span class="skill-tag">SystemVerilog</span>
-          </div>
-          <div class="project-links">
-            <a href="https://github.com/mgamota2/ECE385/tree/main/Lab%205" target="_blank"><i class="fa fa-external-link"></i> Visit Project</a>
-          </div>
-        </div>
-
-
-        <div class="project-box">
-          <h2 class="project-title">GPS/Telemetry Module</h2>
-          <h3 class="project-subheader">Illinois EV Concept, November 2022</h3>
-          <div class="project-media">
-            <img src="media/gps.JPG" alt="GPS Image" width="300" height="230">
-          </div>
-          <p class="project-description">This project was designed for the Illinois EV Concept team which builds a concept EV from scratch
-            to race in the Shell Eco-Marathon, an international competition. This project involved designing, assembling, and testing a 
-            4 layer PCB which includes a GPS module, LoRa communications module, CAN transceiver, and USB-C, all built around an STM32 MCU. 
-            This project enables the team to track the vehicle in real time for health monitoring, driver communication, position tracking, 
-            and even remote control. Thank you to Dmitry Ilcheko for guidance.
-          </p>
-          <div class="skill-tags">
-            <span class="skill-tag">PCB Design</span>
-            <span class="skill-tag">RF Engineering</span>
-            <span class="skill-tag">Embedded Systems</span>
-            <span class="skill-tag">Automotive</span>
-            <span class="skill-tag">Collaborative</span>
-          </div>
-        </div>
-
-      <div class="project-box">
-        <h2 class="project-title">Slicing Tree for VLSI</h2>
-        <h3 class="project-subheader">ECE 220, November 2022</h3>
-        <div class="project-media">
-          <img src="media/vlsi.jpg" alt="VLSI Image" width="400" height="270">
-        </div>
-        <p class="project-description">I included this project over others in the course due to the 
-          application of the slicing tree algorithm which we used. We used the algorithm to create a floorplan for VLSI design
-          based on a text file input. This is one of many C and C++ projects done in my Computer Systems and Programming class which
-          covered basic data structures, algorithms, and C code compilation
-        </p>
-        <div class="skill-tags">
-          <span class="skill-tag">C</span>
-          <span class="skill-tag">VLSI</span>
-          <span class="skill-tag">Algorithms</span>
-          <span class="skill-tag">Optimization</span>
-        </div>
-      </div>
-      
-      <div class="project-box">
-        <h2 class="project-title">Motion System for RF Testing</h2>
-        <h3 class="project-subheader">Research Asst. (Dr. Schutt-Aine), September 2022</h3>
-        <div class="project-media">
-          <video width="150" height="300" controls>
-            <source src="media/rf.mp4" type="video/mp4">
-          </video>
-        </div>
-        <p class="project-description">The goal of this project was to design a motion system to automate RF signal integrity testing.
-          My role on the project was to design the entire system and build support for 2 dimensions of movement. I got familiar with Ansys HSFF,
-          Marlin open source 3D printer firmware, used Python to interact over serial with an Arduino, and design and 3D print custom parts.
-          Thank you to Dr. Thong Nguyen and Prof. Jose Schutt-Aine for this experience.
-        </p>
-        <div class="skill-tags">
-          <span class="skill-tag">3D Printing</span>
-          <span class="skill-tag">Robotics</span>
-          <span class="skill-tag">Embedded Systems</span>
-          <span class="skill-tag">RF Engineering</span>
-          <span class="skill-tag">Research</span>
-        </div>
-      </div>
-
-      <div class="project-box">
-        <h2 class="project-title">Vending Machine Logic</h2>
-        <h3 class="project-subheader">ECE 120 Lab, April 2022</h3>
-        <div class="project-media">
-          <video width="150" height="300" controls>
-            <source src="media/120.mp4" type="video/mp4">
-          </video>
-        </div>
-        <p class="project-description">This was the final project for the Introduction to Computing course. This project involved creating 
-          a finite state machine from discrete logic ICs to handle vending machine transactions based on buttons representing different coins. 
-        </p>
-        <div class="skill-tags">
-          <span class="skill-tag">Digital Logic</span>
-          <span class="skill-tag">Finite State Machine</span>
-          <span class="skill-tag">Computing</span>
-        </div>
-      </div>
-
-      <div class="project-box">
-        <h2 class="project-title">Obstacle Avoiding Rover</h2>
-        <h3 class="project-subheader">ECE 110 Lab, December 2021</h3>
-        <div class="project-media">
-          <video width="300" height="200" controls>
-            <source src="media/rover.mp4" type="video/mp4">
-          </video>
-        </div>
-        <p class="project-description">This project entailed working in a group of 4 to create a 100% hardware based obstacle avoiding 
-          rover which used ultrasonic sensors for object detection. Systems included automatic headlights, PWM-based speed control, 
-          and a DC-DC regulator (Zener).
-        </p>
-        
-        <div class="skill-tags">
-          <span class="skill-tag">Sensors</span>
-          <span class="skill-tag">Autonomous</span>
-          <span class="skill-tag">Power Electronics</span>
-          <span class="skill-tag">Analog Circuits</span>
-          <span class="skill-tag">Collaborative</span>
-        </div>
-      </div>
     </div>
   </section>
 
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="section-label">Work</div>
+    <h2 class="section-title">Projects</h2>
+    <div class="projects-grid">
+
+      <div class="project-card reveal">
+        <img class="project-card-img" src="media/chip.jpg" alt="Chip Layout">
+        <div class="project-card-meta">ECE 427 · Aug–Nov 2025</div>
+        <div class="project-card-title">Digital Random Number Generator IC</div>
+        <p class="project-card-desc">Designed and taped out an RNG integrated circuit in TSMC 65nm. Responsible for schematic, layout, and simulation of a calibratable StrongARM latch-based entropy source, chip debug architecture, and final integration.</p>
+        <div class="project-tags">
+          <span class="project-tag">Circuit Design</span>
+          <span class="project-tag">Chip Layout</span>
+          <span class="project-tag">SystemVerilog</span>
+          <span class="project-tag">Cadence Virtuoso</span>
+        </div>
+      </div>
+
+      <div class="project-card reveal">
+        <img class="project-card-img" src="media/445cad.png" alt="Senior Design Board">
+        <div class="project-card-meta">ECE 445 TA · Jun–Aug 2025</div>
+        <div class="project-card-title">Senior Design New Assignment Development</div>
+        <p class="project-card-desc">Guided 6 teams of 2–3 senior ECE students from ideation to demonstration. Redesigned the PCB intro lab from ATMega to STM32, adding H-bridge, communication protocols, and expanded GPIO.</p>
+        <div class="project-tags">
+          <span class="project-tag">PCB Design</span>
+          <span class="project-tag">STM32</span>
+          <span class="project-tag">Education</span>
+        </div>
+        <a href="https://github.com/mgamota2/ECE445_Lab_Dev" target="_blank" class="project-link">View on GitHub →</a>
+      </div>
+
+      <div class="project-card reveal">
+        <img class="project-card-img" src="media/483ldo.png" alt="LDO Schematic">
+        <div class="project-card-meta">ECE 483 · May 2025</div>
+        <div class="project-card-title">Low Dropout Voltage Regulator Schematic</div>
+        <p class="project-card-desc">Final project for Analog IC Design. Made topological and device sizing decisions to meet input/output voltage, load/line regulation specs while minimizing quiescent current using Cadence Virtuoso and Spectre.</p>
+        <div class="project-tags">
+          <span class="project-tag">Analog IC Design</span>
+          <span class="project-tag">Cadence Virtuoso</span>
+          <span class="project-tag">Cadence Spectre</span>
+        </div>
+        <a href="https://github.com/mgamota2/LDO_483" target="_blank" class="project-link">View on GitHub →</a>
+      </div>
+
+      <div class="project-card reveal">
+        <img class="project-card-img" src="media/425layout.PNG" alt="Datapath Layout">
+        <div class="project-card-meta">ECE 425 · Mar–Apr 2025</div>
+        <div class="project-card-title">RISC-V RV32I Bitsliced Datapath</div>
+        <p class="project-card-desc">Designed the smallest bitsliced RV32I datapath (no shifter) from transistor level — placing top 5 of 100+ students. Deepened understanding of standard cells, routing, and IC abstraction levels.</p>
+        <div class="project-tags">
+          <span class="project-tag">IC Layout</span>
+          <span class="project-tag">RISC-V</span>
+          <span class="project-tag">Cadence Virtuoso</span>
+        </div>
+      </div>
+
+      <div class="project-card reveal">
+        <video controls>
+          <source src="media/radar.mp4" type="video/mp4">
+        </video>
+        <div class="project-card-meta">Computational Imaging Group · Jan–Dec 2024</div>
+        <div class="project-card-title">FMCW mmWave Radar Research</div>
+        <p class="project-card-desc">In Prof. Minh Do's group: Dockerized codebase, migrated ROS to ROS 2, converted Python to C++ for improved performance. Developed real-time visualizations using DSP on TI IWR1443BOOST + DCA1000EVM.</p>
+        <div class="project-tags">
+          <span class="project-tag">FMCW Radar</span>
+          <span class="project-tag">DSP</span>
+          <span class="project-tag">C++ / Python / Docker</span>
+          <span class="project-tag">ROS 2</span>
+        </div>
+        <a href="https://github.com/mgamota2/FMCW_mmWave" target="_blank" class="project-link">View on GitHub →</a>
+      </div>
+
+      <div class="project-card reveal">
+        <video controls>
+          <source src="media/fob.mp4" type="video/mp4">
+        </video>
+        <div class="project-card-meta">ECE 445 Senior Design · Dec 2024 · 🏆 Instructor's Award</div>
+        <div class="project-card-title">Schnorr Protocol Remote Access Fob</div>
+        <p class="project-card-desc">Designed a cryptographically secure remote access system using Schnorr Identification Protocol to eliminate replay, relay, and rolling jam attacks. Won Instructor's Award among 45 teams.</p>
+        <div class="project-tags">
+          <span class="project-tag">Cryptography</span>
+          <span class="project-tag">PCB Design</span>
+          <span class="project-tag">Embedded Software</span>
+          <span class="project-tag">Wireless</span>
+        </div>
+        <a href="https://www.youtube.com/watch?v=8Yq19Ia0oiQ" target="_blank" class="project-link">View Demo →</a>
+        <a href="https://github.com/mgamota2/SchnorrProtocolFob/blob/main/Final%20Report.pdf" target="_blank" class="project-link">View Report →</a>
+      </div>
+
+      <div class="project-card reveal">
+        <img class="project-card-img" src="media/fm.jpg" alt="FM Transceiver">
+        <div class="project-card-meta">ECE 453 · Nov 2024</div>
+        <div class="project-card-title">FM Transmitter and Receiver</div>
+        <p class="project-card-desc">Designed and assembled a full FM transceiver system from individual RF building blocks — oscillator, mixer, modulator, demodulator, filter, amplifier, and matching network. Receiver picked up live FM broadcasts.</p>
+        <div class="project-tags">
+          <span class="project-tag">RF Engineering</span>
+          <span class="project-tag">PCB Layout</span>
+          <span class="project-tag">Wireless</span>
+        </div>
+        <a href="https://github.com/mgamota2/FM_TX_RX" target="_blank" class="project-link">View on GitHub →</a>
+      </div>
+
+      <div class="project-card reveal">
+        <video controls>
+          <source src="media/motor.mp4" type="video/mp4">
+        </video>
+        <div class="project-card-meta">ECE 395 · Apr 2024</div>
+        <div class="project-card-title">Stepper Motor Controller</div>
+        <p class="project-card-desc">Designed and assembled a stepper motor controller for an EV concept car's steering column. Accepts input via CAN bus or USB COM port, converting to PWM for precise angle control.</p>
+        <div class="project-tags">
+          <span class="project-tag">Motor Control</span>
+          <span class="project-tag">CAN Bus</span>
+          <span class="project-tag">PCB Design</span>
+          <span class="project-tag">Embedded</span>
+        </div>
+        <a href="https://github.com/mgamota2/StepperMotorController/blob/main/ECE%20395%20Final%20Report.pdf" target="_blank" class="project-link">View Report →</a>
+      </div>
+
+      <div class="project-card reveal">
+        <img class="project-card-img" src="media/leak.jpg" alt="Leak Sensor">
+        <div class="project-card-meta">Personal Project · Jul 2023</div>
+        <div class="project-card-title">Water Leak Sensor with Email Alerts</div>
+        <p class="project-card-desc">PCB-based water sensor with analog ADC circuit on Raspberry Pi Pico W. Sends email alerts on detection and low battery. Sensors wire in parallel for multi-zone deployment.</p>
+        <div class="project-tags">
+          <span class="project-tag">PCB Design</span>
+          <span class="project-tag">Analog Circuits</span>
+          <span class="project-tag">IoT</span>
+        </div>
+        <a href="https://github.com/mgamota2/PicoW/tree/main/Water%20Sensor" target="_blank" class="project-link">View on GitHub →</a>
+      </div>
+
+      <div class="project-card reveal">
+        <video controls muted>
+          <source src="media/train.mp4" type="video/mp4">
+        </video>
+        <div class="project-card-meta">Personal Project · Jun 2023</div>
+        <div class="project-card-title">WiFi Model Train Control Hub</div>
+        <p class="project-card-desc">Replaced bulky analog controls with a Raspberry Pi Pico W web server managing speed, direction, and track switching. Full PCB and firmware on GitHub.</p>
+        <div class="project-tags">
+          <span class="project-tag">PCB Design</span>
+          <span class="project-tag">Power Electronics</span>
+          <span class="project-tag">WiFi</span>
+          <span class="project-tag">Embedded</span>
+        </div>
+        <a href="https://github.com/mgamota2/PicoW/tree/main/TrainControl" target="_blank" class="project-link">View on GitHub →</a>
+      </div>
+
+      <div class="project-card reveal">
+        <img class="project-card-img" src="media/stock.jpg" alt="Stock Ticker">
+        <div class="project-card-meta">Personal Project · Jun 2023</div>
+        <div class="project-card-title">Real-Time Stock Performance Display</div>
+        <p class="project-card-desc">DIY stock ticker using Raspberry Pi Pico W + WS2812B LED strip for ~$25 (vs $1000+ commercial options). Displays live price and % change in scrolling fashion from a hosted web UI.</p>
+        <div class="project-tags">
+          <span class="project-tag">Pico W</span>
+          <span class="project-tag">API</span>
+          <span class="project-tag">IoT</span>
+        </div>
+        <a href="https://github.com/mgamota2/PicoW/tree/main/Ticker%20Tape" target="_blank" class="project-link">View on GitHub →</a>
+      </div>
+
+      <div class="project-card reveal">
+        <img class="project-card-img" src="media/385final.jpg" alt="GPS FPGA">
+        <div class="project-card-meta">ECE 385 · Apr 2023</div>
+        <div class="project-card-title">Location Logging and Display on FPGA</div>
+        <p class="project-card-desc">Implemented UART RX, NMEA parser, data storage, and VGA graphics driver in SystemVerilog on Intel FPGA. Enabled timestamped GPS location logging at 20-yard resolution with monitor display.</p>
+        <div class="project-tags">
+          <span class="project-tag">FPGA</span>
+          <span class="project-tag">SystemVerilog</span>
+          <span class="project-tag">GNSS</span>
+          <span class="project-tag">Graphics</span>
+        </div>
+        <a href="https://github.com/mgamota2/ECE385/blob/main/Final%20Project/ECE%20385_%20Final%20Project%20Report.pdf" target="_blank" class="project-link">View Report →</a>
+      </div>
+
+      <div class="project-card reveal">
+        <img class="project-card-img" src="media/gps.JPG" alt="GPS Module">
+        <div class="project-card-meta">Illinois EV Concept · Nov 2022</div>
+        <div class="project-card-title">GPS/Telemetry Module</div>
+        <p class="project-card-desc">Designed a 4-layer PCB with GPS, LoRa, CAN transceiver, and USB-C around an STM32 MCU for real-time vehicle tracking, health monitoring, and remote control in the Shell Eco-Marathon.</p>
+        <div class="project-tags">
+          <span class="project-tag">PCB Design</span>
+          <span class="project-tag">RF Engineering</span>
+          <span class="project-tag">Automotive</span>
+          <span class="project-tag">STM32</span>
+        </div>
+      </div>
+
+      <div class="project-card reveal">
+        <video controls>
+          <source src="media/rf.mp4" type="video/mp4">
+        </video>
+        <div class="project-card-meta">Research Asst. · Sep 2022</div>
+        <div class="project-card-title">Motion System for RF Testing</div>
+        <p class="project-card-desc">Designed a 2-axis automated motion system for RF signal integrity testing using Marlin firmware, Python/serial control, and 3D-printed custom parts. Used Ansys HFSS for validation.</p>
+        <div class="project-tags">
+          <span class="project-tag">Robotics</span>
+          <span class="project-tag">RF Engineering</span>
+          <span class="project-tag">3D Printing</span>
+          <span class="project-tag">Research</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CONNECT -->
   <section id="connect">
-    <h1>Connect</h1>  
-    <a href="mailto:mgamota2@illinois.edu">mgamota2@illinois.edu</a>
-    <a class="linkedin-button" href="https://www.linkedin.com/in/michael-gamota-1513a721b/">
-      <img src="media/link.png" alt="LinkedIn">
-      Connect on LinkedIn
-    </a>
+    <div class="section-label">Contact</div>
+    <h2 class="section-title">Let's Connect</h2>
+    <div class="connect-inner reveal">
+      <p>Interested in working together or just want to talk electronics? I'm always happy to connect with fellow engineers, researchers, and builders.</p>
+      <div class="connect-links">
+        <a href="mailto:mgamota2@illinois.edu" class="connect-btn primary">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          mgamota2@illinois.edu
+        </a>
+        <a href="https://www.linkedin.com/in/michael-gamota-1513a721b/" target="_blank" class="connect-btn secondary">
+          <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          LinkedIn
+        </a>
+      </div>
+    </div>
   </section>
 
   <footer>
-    <p>2025 Michael Gamota</p>
+    <p>© 2025 Michael Gamota</p>
+    <p>Built with HTML/CSS · UIUC ECE</p>
   </footer>
+
+  <script>
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    reveals.forEach(el => observer.observe(el));
+  </script>
 </body>
 </html>
